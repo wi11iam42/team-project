@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="organization and renaming"/>
-      <change afterPath="$PROJECT_DIR$/odds.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/GameSelectInteractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/GameSelectOutputBoundary.java" afterDir="false" />
+    <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="walletUI balance now interacts with userbalance">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameSelectView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameSelectView.java" afterDir="false" />
-    <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="commit3_bill">
-      <change afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Profile/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Profile/ProfilePresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odds.txt" beforeDir="false" afterPath="$PROJECT_DIR$/odds.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Sportbet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Sportbet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/BetHistoryFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BetHistoryFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SportbetFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SportbetFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,12 +39,12 @@
     &quot;assignee&quot;: &quot;wi11iam42&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/wi11iam42/team-project.git",
-    "accountId": "116a6b68-e6d8-4194-8361-957d5c2f01af"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wi11iam42/team-project.git&quot;,
+    &quot;accountId&quot;: &quot;24a04282-7586-45bc-b545-c1384e2fffd9&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -65,24 +56,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AlternativeMain.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MinesView.executor": "Run",
-    "Application.blackjackview.executor": "Run",
-    "Application.minesview.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "updated-game-select",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AlternativeMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MinesView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.blackjackview.executor&quot;: &quot;Run&quot;,
+    &quot;Application.minesview.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#27 on issei&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="team-project" />
@@ -168,7 +159,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763486922920</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="organization and renaming">
+      <option name="closed" value="true" />
+      <created>1763750496823</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1763750496823</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixing errors with sportsbet, dispose bethistoryframe on go back">
+      <option name="closed" value="true" />
+      <created>1763751039043</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763751039043</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +196,7 @@
     <MESSAGE value="mines UI added" />
     <MESSAGE value="commit3_bill" />
     <MESSAGE value="Change The home page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change The home page." />
+    <MESSAGE value="fixing errors with sportsbet, dispose bethistoryframe on go back" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing errors with sportsbet, dispose bethistoryframe on go back" />
   </component>
 </project>

@@ -12,9 +12,9 @@ public class WalletUI extends JFrame {
     private final JLabel balanceLabel;
     private final JTextField amountField;
     private final JTextArea historyArea;
-
-    private BigDecimal balance = new BigDecimal("100.00");
     private final User user;
+
+
     private final JFrame previousFrame;
 
     private static final NumberFormat CURRENCY = NumberFormat.getCurrencyInstance(Locale.CANADA);
@@ -22,7 +22,7 @@ public class WalletUI extends JFrame {
     public WalletUI(User user, JFrame previousFrame) {
         this.user = user;
         this.previousFrame = previousFrame;
-
+        BigDecimal balance = new BigDecimal(user.getBalance());
         setTitle("Wallet");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -102,7 +102,7 @@ public class WalletUI extends JFrame {
                 showError("Please enter a positive amount.");
                 return;
             }
-            balance = balance.add(amount);
+            user.deposit(amount.doubleValue());
             updateUI("Deposited " + CURRENCY.format(amount));
         } catch (NumberFormatException ex) {
             showError("Invalid input. Please enter a valid number.");
@@ -116,11 +116,11 @@ public class WalletUI extends JFrame {
                 showError("Please enter a positive amount.");
                 return;
             }
-            if (balance.compareTo(amount) < 0) {
+            if (!user.checkwithdraw(amount.doubleValue())) {
                 showError("Insufficient funds!");
                 return;
             }
-            balance = balance.subtract(amount);
+            user.withdraw(amount.doubleValue());
             updateUI("Withdrew " + CURRENCY.format(amount));
         } catch (NumberFormatException ex) {
             showError("Invalid input. Please enter a valid number.");
@@ -128,7 +128,7 @@ public class WalletUI extends JFrame {
     }
 
     private void updateUI(String action) {
-        balanceLabel.setText("Balance: " + CURRENCY.format(balance));
+        balanceLabel.setText("Balance: " + CURRENCY.format(user.getBalance()));
         historyArea.append(action + "\n");
         amountField.setText("");
     }
