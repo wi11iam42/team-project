@@ -1,16 +1,24 @@
 package interface_adapter.GameSelect;
 
+import entity.User;
+import view.BlackjackView;
+import view.MainMenuFrame;
+import view.MinesView;
+
 /**
  * The controller for the Login Use Case.
  */
 public class GameSelectController {
 
-    /**
-     * Executes the Login Use Case.
-     * @param game is string of game wanted to be played
-     * @param stakes is float of user's desired stakes
-     */
-    public void execute(String game, String stakes) {
-        System.out.println("Play game: " + game + " at stakes: " + stakes);
+    public void execute(GameSelectState state) {
+        if(state.getGame().equals("BlackJack")){
+            new BlackjackView(state.getUser());
+        }
+        if(state.getGame().equals("Mines")){
+            new MinesView(state.getUser());
+        }
+        if(state.getGame().equals("MainMenu")){
+            new MainMenuFrame(state.getUser());
+        }
     }
 }

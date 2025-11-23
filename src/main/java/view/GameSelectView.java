@@ -24,6 +24,8 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
 
         JTextField stakesInputField = new JTextField(10);
 
+        JButton BackButton = new JButton(("Back"));
+
         JPanel buttons = new JPanel();
         JButton MinesButton = new JButton("Mines");
         JButton WheelButton = new JButton("Wheel");
@@ -42,17 +44,27 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
         this.gameSelectViewModel = gameSelectViewModel;
         this.gameSelectController = new GameSelectController();
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(BackButton);
         this.add(buttons);
         this.add(stakesInfo);
         this.add(finalButton);
 
-
+        BackButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(BackButton)) {
+                            gameSelectViewModel.getState().setGame("MainMenu");
+                            gameSelectController.execute(gameSelectViewModel.getState());
+                            SwingUtilities.getWindowAncestor(GameSelectView.this).dispose();
+                        }
+                    }
+                }
+        );
         MinesButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(MinesButton)) {
                             gameSelectViewModel.getState().setGame("Mines");
-                            System.out.println("Mines");
                         }
                     }
                 }
@@ -62,7 +74,6 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(WheelButton)) {
                             gameSelectViewModel.getState().setGame("Wheel");
-                            System.out.println("Wheel");
                         }
                     }
                 }
@@ -72,7 +83,6 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(BlackJackButton)) {
                             gameSelectViewModel.getState().setGame("BlackJack");
-                            System.out.println("BlackJack");
                         }
                     }
                 }
@@ -82,12 +92,12 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(playButton)) {
                             GameSelectState currentState = gameSelectViewModel.getState();
-                            gameSelectController.execute(currentState.getGame(), stakesInputField.getText());
+                            gameSelectController.execute(currentState);
+                            SwingUtilities.getWindowAncestor(GameSelectView.this).dispose();
                         }
                     }
                 }
         );
-
     }
 
     /**

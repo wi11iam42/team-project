@@ -40,6 +40,8 @@ public class User {
     public void addBet(Sportbet sb, double betamount) {
         withdraw(betamount);
         sbs.add(sb);
+        sb.setStake(betamount);
+        sb.setPayout(sb.getSelection(),betamount);
         this.totalBets++;
 
     }

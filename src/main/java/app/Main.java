@@ -1,7 +1,8 @@
-package view;
+package app;
 
 import data_access.SportsAPIDataAccess;
 import entity.User;
+import view.MainMenuFrame;
 
 public class Main {
     public static void main(String[] args) {

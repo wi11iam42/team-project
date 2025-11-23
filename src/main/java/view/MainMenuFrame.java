@@ -1,6 +1,8 @@
 package view;
 
+import app.AppBuilder;
 import entity.User;
+import interface_adapter.GameSelect.GameSelectViewModel;
 import interface_adapter.Profile.ProfileController;
 import interface_adapter.Profile.ProfilePresenter;
 import interface_adapter.Profile.ProfileViewModel;
@@ -45,14 +47,14 @@ public class MainMenuFrame extends JFrame {
         JButton profileBtn = createMenuButton("Profile");
         JButton betHistoryBtn = createMenuButton("View Bet History");
         JButton sportBetBtn = createMenuButton("Sport Bet");
-        JButton minesBtn = createMenuButton("Play Bet Games");
+        JButton gameSelectBtn = createMenuButton("Play Bet Games");
         JButton depositBtn = createMenuButton("Deposit / Withdraw");
         JButton logoutBtn = createMenuButton("Logout");
 
         JPanel betRow = new JPanel(new GridLayout(1, 2, 15, 0));
         betRow.setOpaque(false);
         betRow.add(sportBetBtn);
-        betRow.add(minesBtn);
+        betRow.add(gameSelectBtn);
 
         panel.add(profileBtn);
         panel.add(betHistoryBtn);
@@ -75,6 +77,7 @@ public class MainMenuFrame extends JFrame {
 
         betHistoryBtn.addActionListener(e -> {
             new BetHistoryFrame(user, this);
+            this.dispose();
         });
 
         depositBtn.addActionListener(e -> {
@@ -84,10 +87,19 @@ public class MainMenuFrame extends JFrame {
 
         sportBetBtn.addActionListener(e -> {
             new SportbetFrame(user, this);
+            this.dispose();
         });
 
-        minesBtn.addActionListener(e -> {
-            new MinesView(user);
+        gameSelectBtn.addActionListener(e -> {
+            AppBuilder appBuilder = new AppBuilder();
+            JFrame application = appBuilder
+                    .addGameSelectView()
+                    .build();
+
+            application.pack();
+            application.setLocationRelativeTo(null);
+            application.setVisible(true);
+            dispose();
         });
 
         logoutBtn.addActionListener(e -> {
