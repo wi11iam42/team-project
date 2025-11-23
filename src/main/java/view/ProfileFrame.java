@@ -14,15 +14,26 @@ public class ProfileFrame extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
 
-        JPanel centerPanel = new JPanel(new GridLayout(4, 1));
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setBackground(Color.WHITE);
 
-        centerPanel.add(new JLabel("Username: " + vm.getUsername(), SwingConstants.CENTER));
-        centerPanel.add(new JLabel("Balance: $" + vm.getBalance(), SwingConstants.CENTER));
-        centerPanel.add(new JLabel("Bets: " + vm.getBets(), SwingConstants.CENTER));
-        centerPanel.add(new JLabel("Games Played: " + vm.getGamesPlayed(), SwingConstants.CENTER));
+        Font font = new Font("Arial", Font.PLAIN, 30);
+
+        centerPanel.add(createLabel("Username: " + vm.getUsername(), font));
+        centerPanel.add(Box.createVerticalStrut(20));
+
+        centerPanel.add(createLabel("Balance: $" + vm.getBalance(), font));
+        centerPanel.add(Box.createVerticalStrut(20));
+
+        centerPanel.add(createLabel("Bets: " + vm.getBets(), font));
+        centerPanel.add(Box.createVerticalStrut(20));
+
+        centerPanel.add(createLabel("Games Played: " + vm.getGamesPlayed(), font));
 
         JButton returnBtn = new JButton("Return to Home");
-        returnBtn.setFont(new Font("Arial", Font.BOLD, 35));
+        returnBtn.setFont(new Font("Arial", Font.BOLD, 40));
+        returnBtn.setPreferredSize(new Dimension(400, 100));
         returnBtn.addActionListener(e -> {
             mainMenu.setVisible(true);
             dispose();
@@ -32,5 +43,12 @@ public class ProfileFrame extends JFrame {
         add(returnBtn, BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+
+    private JLabel createLabel(String text, Font font) {
+        JLabel label = new JLabel(text, SwingConstants.CENTER);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label.setFont(font);
+        return label;
     }
 }
