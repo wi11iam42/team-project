@@ -12,10 +12,11 @@ import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.IOException;
 
+// Delete if we don't implement this.
 
 public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
                                                LoginUserDataAccessInterface{
-    // add back in change password and logout
+    // Add back change password and logout
     private static final int SUCCESS_CODE = 200;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
@@ -130,8 +131,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 //        // POST METHOD
 //        final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
 //        final JSONObject requestBody = new JSONObject();
-//        requestBody.put(USERNAME, user.getUsername());
-//        requestBody.put(PASSWORD, user.getPasswordHash());
 //        final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
 //        final Request request = new Request.Builder()
 //                                    .url("http://vm003.teach.cs.toronto.edu:20112/user")
@@ -144,7 +143,6 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 //            final JSONObject responseBody = new JSONObject(response.body().string());
 //
 //            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-//
 //            }
 //            else {
 //                throw new RuntimeException(responseBody.getString(MESSAGE));
