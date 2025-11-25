@@ -3,6 +3,7 @@ package view;
 import data_access.SportsAPIDataAccess;
 import entity.Sportbet;
 import entity.User;
+import use_case.SportbetInteractor;
 import view.MainMenuFrame.MainMenuFrame;
 
 import javax.swing.*;
@@ -11,94 +12,80 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SportbetFrame extends JFrame {
     public SportbetFrame(User user, JFrame mainMenu){
+
+        SportbetInteractor interactor = new SportbetInteractor();
+
         setTitle("Place a Sports Bet");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920, 1080);
         setLayout(new BorderLayout());
 
-        // ----- LIST OF BETS -----
         JList<Sportbet> betsList = new JList<>(
                 SportsAPIDataAccess.allbets.toArray(new Sportbet[0])
         );
-        betsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
         JScrollPane scrollPane = new JScrollPane(betsList);
         add(scrollPane, BorderLayout.CENTER);
 
-        // ----- INPUT FOR BET AMOUNT -----
-        AtomicBoolean teamselected = new AtomicBoolean(false);
-        AtomicBoolean whichteam = new AtomicBoolean(false);
+        AtomicBoolean hasTeam = new AtomicBoolean(false);
+        AtomicBoolean pickedTeam1 = new AtomicBoolean(false);
+
         JTextField amountField = new JTextField(10);
-        JButton placeBetButton = new JButton("Place Bet");
-        JButton backButton = new JButton("Go Back");
-        backButton.addActionListener(e -> {
-            new MainMenuFrame(user);
-            dispose();
-        });
+
         JButton pickteam1 = new JButton("Bet on team 1");
         JButton pickteam2 = new JButton("Bet on team 2");
+        JButton placeBetButton = new JButton("Place Bet");
+        JButton backButton = new JButton("Go Back");
+
         pickteam1.addActionListener(e -> {
-            Sportbet selected = betsList.getSelectedValue();
-            teamselected.set(true);
-            if (selected == null || amountField.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Select a bet and bet amount first.");
-                return;
-            }
-            selected.setSelection(selected.getTeam1());
-            whichteam.set(true);
-
-
+            Sportbet s = betsList.getSelectedValue();
+            if (s == null) return;
+            hasTeam.set(true);
+            pickedTeam1.set(true);
+            s.setSelection(s.getTeam1());
         });
+
         pickteam2.addActionListener(e -> {
-            Sportbet selected = betsList.getSelectedValue();
-            teamselected.set(true);
-            if (selected == null || amountField.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Select a bet and bet amount first.");
-                return;
-            }
-            selected.setSelection(selected.getTeam2());
-            whichteam.set(false);
-
-
+            Sportbet s = betsList.getSelectedValue();
+            if (s == null) return;
+            hasTeam.set(true);
+            pickedTeam1.set(false);
+            s.setSelection(s.getTeam2());
         });
-        placeBetButton.addActionListener(e -> {
-            Sportbet selected = betsList.getSelectedValue();
 
-            if (selected == null || teamselected.get() == false) {
+        placeBetButton.addActionListener(e -> {
+            Sportbet s = betsList.getSelectedValue();
+            if (s == null || !hasTeam.get()) {
                 JOptionPane.showMessageDialog(this, "Select a bet and team first.");
                 return;
             }
-            if (selected.getPayout() > 1){
-                JOptionPane.showMessageDialog(this, "You can't bet on the same game twice!");
-                return;
-            }
-
-            String text = amountField.getText();
 
             int amount;
-            try {
-                amount = Integer.parseInt(text);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Enter a valid integer amount.");
+            try { amount = Integer.parseInt(amountField.getText()); }
+            catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Enter a valid integer.");
                 return;
             }
-            if(user.checkwithdraw(amount)){
-                user.addBet(selected,amount);
-                selected.setStatus("Bet Placed");
-                user.viewBets();
-                JOptionPane.showMessageDialog(this,
-                        "Bet placed: " + selected.toString() + " for $" + amount);
-                if(whichteam.get()){
-                    selected.setPayout(selected.getTeam1(),amount);
-                }
-                else{
-                    selected.setPayout(selected.getTeam2(),amount);
-                }
 
+            if (!user.checkwithdraw(amount)) {
+                JOptionPane.showMessageDialog(this, "Insufficient balance.");
+                return;
             }
-            else{
-                JOptionPane.showMessageDialog(this,"Please enter an amount lower than your current balance.");
-            }
+
+            // CLEAN ARCHITECTURE: interactor handles everything
+            interactor.placeBet(
+                    s,
+                    user,
+                    amount,
+                    pickedTeam1.get() ? s.getTeam1() : s.getTeam2()
+            );
+
+            JOptionPane.showMessageDialog(this,
+                    "Bet placed:\n" + s.toString());
+        });
+
+        backButton.addActionListener(e -> {
+            new MainMenuFrame(user);
+            dispose();
         });
 
         JPanel bottomPanel = new JPanel(new FlowLayout());
