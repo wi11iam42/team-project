@@ -1,5 +1,7 @@
 package use_case.profile;
 
+import java.math.BigDecimal;
+
 public class ProfileOutputData {
     private final String username;
     private final double balance;

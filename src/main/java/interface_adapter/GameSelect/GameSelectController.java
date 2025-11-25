@@ -1,8 +1,7 @@
 package interface_adapter.GameSelect;
 
-import entity.User;
 import view.BlackjackView;
-import view.MainMenuFrame;
+import view.MainMenuFrame.MainMenuFrame;
 import view.MinesView;
 
 /**

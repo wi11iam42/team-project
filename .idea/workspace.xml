@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="walletUI balance now interacts with userbalance">
+    <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="Polish the home page and adjust the layout">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/odds.txt" beforeDir="false" afterPath="$PROJECT_DIR$/odds.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Sportbet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Sportbet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/BetHistoryFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BetHistoryFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SportbetFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SportbetFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/Profile/ProfileViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Profile/ProfileViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameSelectView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameSelectView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/WalletUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WalletFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="bill" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +46,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/wi11iam42/team-project.git&quot;,
-    &quot;accountId&quot;: &quot;24a04282-7586-45bc-b545-c1384e2fffd9&quot;
+    &quot;accountId&quot;: &quot;654b9790-94d7-43c5-8987-3a9c93074222&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -56,24 +60,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AlternativeMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MinesView.executor&quot;: &quot;Run&quot;,
-    &quot;Application.blackjackview.executor&quot;: &quot;Run&quot;,
-    &quot;Application.minesview.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#27 on issei&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AlternativeMain.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MinesView.executor": "Run",
+    "Application.blackjackview.executor": "Run",
+    "Application.minesview.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "#29 on bill",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="team-project" />
@@ -86,6 +91,13 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -161,19 +173,19 @@
     </task>
     <task id="LOCAL-00009" summary="organization and renaming">
       <option name="closed" value="true" />
-      <created>1763750496823</created>
+      <created>1763873602467</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1763750496823</updated>
+      <updated>1763873602467</updated>
     </task>
-    <task id="LOCAL-00010" summary="fixing errors with sportsbet, dispose bethistoryframe on go back">
+    <task id="LOCAL-00010" summary="Polish the home page and adjust the layout">
       <option name="closed" value="true" />
-      <created>1763751039043</created>
+      <created>1763913412399</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1763751039043</updated>
+      <updated>1763913412399</updated>
     </task>
     <option name="localTasksCounter" value="11" />
     <servers />
@@ -196,7 +208,8 @@
     <MESSAGE value="mines UI added" />
     <MESSAGE value="commit3_bill" />
     <MESSAGE value="Change The home page." />
-    <MESSAGE value="fixing errors with sportsbet, dispose bethistoryframe on go back" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing errors with sportsbet, dispose bethistoryframe on go back" />
+    <MESSAGE value="organization and renaming" />
+    <MESSAGE value="Polish the home page and adjust the layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Polish the home page and adjust the layout" />
   </component>
 </project>

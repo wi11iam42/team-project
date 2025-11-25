@@ -13,8 +13,19 @@ public class ProfileViewModel {
         this.gamesPlayed = gamesPlayed;
     }
 
-    public String getUsername() { return username; }
-    public double getBalance() { return balance; }
-    public int getBets() { return bets; }
-    public int getGamesPlayed() { return gamesPlayed; }
+    public String getUsername() {
+        return username;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public int getBets() {
+        return bets;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
 }

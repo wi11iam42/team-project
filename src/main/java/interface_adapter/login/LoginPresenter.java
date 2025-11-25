@@ -6,7 +6,7 @@ import interface_adapter.loggedin.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
-import view.MainMenuFrame;
+import view.MainMenuFrame.MainMenuFrame;
 import entity.User;
 
 
