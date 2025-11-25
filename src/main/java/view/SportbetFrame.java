@@ -25,6 +25,7 @@ public class SportbetFrame extends JFrame {
 
         // ----- INPUT FOR BET AMOUNT -----
         AtomicBoolean teamselected = new AtomicBoolean(false);
+        AtomicBoolean whichteam = new AtomicBoolean(false);
         JTextField amountField = new JTextField(10);
         JButton placeBetButton = new JButton("Place Bet");
         JButton backButton = new JButton("Go Back");
@@ -42,6 +43,19 @@ public class SportbetFrame extends JFrame {
                 return;
             }
             selected.setSelection(selected.getTeam1());
+            whichteam.set(true);
+
+
+        });
+        pickteam2.addActionListener(e -> {
+            Sportbet selected = betsList.getSelectedValue();
+            teamselected.set(true);
+            if (selected == null || amountField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Select a bet and bet amount first.");
+                return;
+            }
+            selected.setSelection(selected.getTeam2());
+            whichteam.set(false);
 
 
         });
@@ -50,6 +64,10 @@ public class SportbetFrame extends JFrame {
 
             if (selected == null || teamselected.get() == false) {
                 JOptionPane.showMessageDialog(this, "Select a bet and team first.");
+                return;
+            }
+            if (selected.getPayout() > 1){
+                JOptionPane.showMessageDialog(this, "You can't bet on the same game twice!");
                 return;
             }
 
@@ -64,10 +82,17 @@ public class SportbetFrame extends JFrame {
             }
             if(user.checkwithdraw(amount)){
                 user.addBet(selected,amount);
+                selected.setStatus("Bet Placed");
                 user.viewBets();
                 JOptionPane.showMessageDialog(this,
                         "Bet placed: " + selected.toString() + " for $" + amount);
-                selected.setPayout(selected.getTeam1(),amount);
+                if(whichteam.get()){
+                    selected.setPayout(selected.getTeam1(),amount);
+                }
+                else{
+                    selected.setPayout(selected.getTeam2(),amount);
+                }
+
             }
             else{
                 JOptionPane.showMessageDialog(this,"Please enter an amount lower than your current balance.");

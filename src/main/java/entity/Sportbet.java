@@ -20,7 +20,7 @@ public class Sportbet {
         this.team2 = team2;
         this.team1price = team1price;
         this.team2price = team2price;
-        this.status = status;
+        this.status = "No bets";
 
         this.stake = 0;
     }
@@ -71,7 +71,8 @@ public class Sportbet {
         }
         result += "ID: "+this.getId()+", Sport: "+this.getSport()+", Teams: "+this.getTeam1()+
                 " vs "+this.getTeam2()+", Odds: "+this.getTeam1price()+"/"+this.getTeam2price()+
-                spacer+ "\n Selected team: "+this.getSelection()+",   Stake: "+this.getStake()+",   Payout: "+this.getPayout();;
+                spacer+ "\n Selected team: "+this.getSelection()+",   Stake: "+this.getStake()
+                +",   Payout: "+this.getPayout()+" Status: "+this.getStatus();;
         return result;
     }
 
