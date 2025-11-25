@@ -45,7 +45,6 @@ public class User {
         withdraw(betamount);
         sbs.add(sb);
         sb.setStake(betamount);
-        sb.setPayout(sb.getSelection(), betamount);
         totalBets++;
     }
 
