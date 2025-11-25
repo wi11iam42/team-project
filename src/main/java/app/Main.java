@@ -2,7 +2,8 @@ package app;
 
 import data_access.SportsAPIDataAccess;
 import entity.User;
-import view.MainMenuFrame;
+import view.LoginView;
+import view.MainMenuFrame.MainMenuFrame;
 
 public class Main {
     public static void main(String[] args) {

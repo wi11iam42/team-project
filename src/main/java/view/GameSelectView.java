@@ -24,18 +24,20 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
 
         JTextField stakesInputField = new JTextField(10);
 
-        JButton BackButton = new JButton(("Back"));
+        JButton BackButton = new JButton("Back");
 
         JPanel buttons = new JPanel();
         JButton MinesButton = new JButton("Mines");
         JButton WheelButton = new JButton("Wheel");
         JButton BlackJackButton = new JButton("Black Jack");
+
         buttons.add(MinesButton);
         buttons.add(WheelButton);
         buttons.add(BlackJackButton);
 
         LabelTextPanel stakesInfo = new LabelTextPanel(
-                new JLabel("Stakes:"), stakesInputField);
+                new JLabel("Stakes:"), stakesInputField
+        );
 
         JPanel finalButton = new JPanel();
         JButton playButton = new JButton("Play!");
@@ -43,6 +45,7 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
 
         this.gameSelectViewModel = gameSelectViewModel;
         this.gameSelectController = new GameSelectController();
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(BackButton);
         this.add(buttons);
@@ -60,6 +63,7 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     }
                 }
         );
+
         MinesButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -69,6 +73,7 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     }
                 }
         );
+
         WheelButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -78,6 +83,7 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     }
                 }
         );
+
         BlackJackButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -87,6 +93,7 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     }
                 }
         );
+
         playButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -102,8 +109,8 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
 
     /**
      * React to a button click that results in evt.
-     * @param evt the ActionEvent to react to
      */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }
