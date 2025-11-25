@@ -6,6 +6,7 @@ import interface_adapter.GameSelect.GameSelectViewModel;
 import interface_adapter.ViewModel;
 import interface_adapter.ViewManagerModel;
 import view.GameSelectView;
+import view.MainMenuFrame.BackgroundPanel;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -36,7 +37,10 @@ public class AppBuilder {
         final JFrame application = new JFrame("366");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        application.add(cardPanel);
+        application.add(cardPanel,0);
+        application.setMinimumSize(new Dimension(1700, 1050));
+        application.setPreferredSize(new Dimension(1700, 1050));
+        application.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         viewManagerModel.setState(gameSelectView.getViewName());
         viewManagerModel.firePropertyChange();
