@@ -61,15 +61,19 @@ public class BetHistoryFrame extends JFrame {
             if(simgame < team1chance){
                 if (selected.getSelection().equals(selected.getTeam1())){
                     user.deposit(selected.getPayout());
+                    selected.setBetwon(true);
                     JOptionPane.showMessageDialog(this, selected.getTeam1()+" won! Your winnings have been deposited.");
                 } else {
+                    selected.setBetwon(false);
                     JOptionPane.showMessageDialog(this, selected.getTeam1()+" won. Better luck next time!");
                 }
             } else {
                 if (selected.getSelection().equals(selected.getTeam2())){
                     user.deposit(selected.getPayout());
+                    selected.setBetwon(true);
                     JOptionPane.showMessageDialog(this, selected.getTeam2()+" won! Your winnings have been deposited.");
                 } else {
+                    selected.setBetwon(false);
                     JOptionPane.showMessageDialog(this, selected.getTeam2()+" won. Better luck next time!");
                 }
             }
