@@ -11,7 +11,7 @@ import data_access.UserDataAccessInterface;
 import view.BetHistoryFrame;
 import view.ProfileFrame;
 import view.SportbetFrame;
-import view.WalletUI;
+import view.WalletFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -187,7 +187,7 @@ public class MainMenuFrame extends JFrame {
         });
 
         depositBtn.addActionListener(e -> {
-            new WalletUI(user, this);
+            new WalletFrame(user, this);
             setVisible(false);
         });
 
@@ -232,17 +232,4 @@ public class MainMenuFrame extends JFrame {
         }
     }
 
-    static class BackgroundPanel extends JPanel {
-        private final Image bg;
-
-        public BackgroundPanel(String imgPath) {
-            bg = new ImageIcon(imgPath).getImage();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
 }
