@@ -15,7 +15,7 @@ public class SportsAPIDataAccess {
     public static ArrayList<Sportbet> allbets = new ArrayList<>();
 
     public void fetchOdds() {
-        String sport = "basketball_nba";
+        String sport = "icehockey_nhl";
         String url = "https://api.the-odds-api.com/v4/sports/" + sport +
                 "/odds?regions=us&markets=h2h&apiKey=" + apiKey;
         System.out.println(url);

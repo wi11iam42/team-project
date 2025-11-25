@@ -15,7 +15,6 @@ public class InMemoryUserDataAccess implements
     private String currentUsername;
 
     public InMemoryUserDataAccess() {
-        // A default test user
         users.put("bob", new User("bob", 0, 0, 8, "123"));
     }
 

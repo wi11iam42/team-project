@@ -12,9 +12,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
-                                                 LoginUserDataAccessInterface {
-    // Add in change password and logout
+                                                 LoginUserDataAccessInterface{
+// Add back in change password and logout?
 
     private static final String HEADER = "username,password";
 
@@ -23,7 +24,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     private final Map<String, User> accounts = new HashMap<>();
 
     private String currentUsername;
-
 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) {
 
