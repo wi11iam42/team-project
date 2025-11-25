@@ -9,6 +9,10 @@ public class BackgroundPanel extends JPanel {
     public BackgroundPanel(String path) {
         bg = new ImageIcon(path).getImage();
     }
+    public BackgroundPanel() {
+        bg = new ImageIcon(getClass().getResource("/Image_1-6.jpeg").getPath()).getImage();
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {
