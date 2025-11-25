@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="walletUI balance now interacts with userbalance">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/odds.txt" beforeDir="false" afterPath="$PROJECT_DIR$/odds.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Sportbet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Sportbet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/BetHistoryFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BetHistoryFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SportbetFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SportbetFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/SportsAPIDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/SportsAPIDataAccess.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="bill" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
