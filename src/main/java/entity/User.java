@@ -16,7 +16,6 @@ public class User {
         this.totalBets = totalBets;
         this.gamesPlayed = gamesPlayed;
         this.passwordHash = passwordHash;
-        this.sbs = new ArrayList<>();
     }
 
     public String getUsername() { return username; }
@@ -24,35 +23,39 @@ public class User {
     public int getBets() { return totalBets; }
     public int getGamesPlayed() { return gamesPlayed; }
     public String getPasswordHash() { return passwordHash; }
-    public ArrayList<Sportbet> getSbs(){ return sbs; }
+    public ArrayList<Sportbet> getSbs() { return sbs; }
 
-    // Optional business logic
-    public void deposit(double amount) {
-        this.balance += amount;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
-    public boolean checkwithdraw(double amount){
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public boolean checkwithdraw(double amount) {
         return balance > amount;
     }
+
     public void withdraw(double amount) {
-        this.balance -= amount;
+        balance -= amount;
     }
 
     public void addBet(Sportbet sb, double betamount) {
         withdraw(betamount);
         sbs.add(sb);
         sb.setStake(betamount);
-        sb.setPayout(sb.getSelection(),betamount);
-        this.totalBets++;
-
+        sb.setPayout(sb.getSelection(), betamount);
+        totalBets++;
     }
 
-    public void viewBets(){
-        for(Sportbet s:this.sbs){
+    public void viewBets() {
+        for (Sportbet s : sbs) {
             System.out.println(s);
         }
     }
 
     public void addGamePlayed() {
-        this.gamesPlayed++;
+        gamesPlayed++;
     }
 }
