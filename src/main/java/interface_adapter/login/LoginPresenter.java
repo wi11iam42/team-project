@@ -28,15 +28,12 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-        // On success, update the loggedInViewModel's state
         final LoggedInState loggedInState = loggedInViewModel.getState();
         loggedInState.setUsername(response.getUsername());
         this.loggedInViewModel.firePropertyChange();
 
-        // and clear everything from the LoginViewModel's state
         loginViewModel.setState(new LoginState());
 
-        // switch to the logged in view
         User loggedInUser = new User(response.getUsername(), 0, 0, 0, ""); // create User entity
         new MainMenuFrame(loggedInUser);
 
