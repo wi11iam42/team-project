@@ -34,12 +34,13 @@ public class User {
     }
 
     public boolean checkwithdraw(double amount) {
-        return balance > amount;
+        return balance >= amount;
     }
 
     public void withdraw(double amount) {
+        if (checkwithdraw(amount)) {
         balance -= amount;
-    }
+    }}
 
     public void addBet(Sportbet sb, double betamount) {
         withdraw(betamount);
