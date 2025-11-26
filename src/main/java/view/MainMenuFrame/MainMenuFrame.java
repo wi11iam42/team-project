@@ -12,6 +12,9 @@ import view.BetHistoryFrame;
 import view.ProfileFrame;
 import view.SportbetFrame;
 import view.WalletFrame;
+import data_access.SportbetFileDataAccessObject;
+import entity.Sportbet;
+import java.util.List;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,10 +25,18 @@ public class MainMenuFrame extends JFrame {
         System.setProperty("sun.java2d.uiScale", "1");
     }
 
+    private final User user;
     private final ProfilePresenter profilePresenter;
     private final ProfileController profileController;
 
     public MainMenuFrame(User user) {
+        this.user = user;
+
+        SportbetFileDataAccessObject betDAO =
+                new SportbetFileDataAccessObject("bets.csv");
+        List<Sportbet> history = betDAO.loadBetsForUser(this.user.getUsername());
+        this.user.getSbs().clear();
+        this.user.getSbs().addAll(history);
 
         setTitle("BET366 Main Menu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
