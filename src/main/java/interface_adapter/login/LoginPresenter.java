@@ -3,10 +3,12 @@ package interface_adapter.login;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.loggedin.LoggedInState;
 import interface_adapter.loggedin.LoggedInViewModel;
+import interface_adapter.logout.LogoutController;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 import use_case.login.LoginUserDataAccessInterface;
+import view.LoginView;
 import view.MainMenuFrame.MainMenuFrame;
 import entity.User;
 
@@ -18,17 +20,23 @@ public class LoginPresenter implements LoginOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final SignupViewModel signupViewModel;
     private final LoginUserDataAccessInterface userDataAccess;
+    private final LogoutController logoutController;
+    private final LoginView loginView;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
                           LoginViewModel loginViewModel,
                           SignupViewModel signupViewModel,
-                          LoginUserDataAccessInterface userDataAccess) {
+                          LoginUserDataAccessInterface userDataAccess,
+                          LogoutController logoutController,
+                          LoginView loginView) {
         this.viewManagerModel = viewManagerModel;
         this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
         this.signupViewModel = signupViewModel;
         this.userDataAccess = userDataAccess;
+        this.logoutController = logoutController;
+        this.loginView = loginView;
     }
 
     @Override
@@ -39,9 +47,14 @@ public class LoginPresenter implements LoginOutputBoundary {
 
         loginViewModel.setState(new LoginState());
 
+        loginView.close();
+
         String username = response.getUsername();
         User loggedInUser = userDataAccess.get(username);
-        new MainMenuFrame(loggedInUser);
+        MainMenuFrame mainMenu = new MainMenuFrame(loggedInUser);
+        mainMenu.setLogoutController(logoutController);
+
+        mainMenu.setVisible(true);
     }
 
     @Override

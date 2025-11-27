@@ -5,6 +5,7 @@ import entity.User;
 import interface_adapter.Profile.ProfileController;
 import interface_adapter.Profile.ProfilePresenter;
 import interface_adapter.Profile.ProfileViewModel;
+import interface_adapter.logout.LogoutController;
 import use_case.profile.ProfileInteractor;
 import data_access.InMemoryUserDataAccess;
 import data_access.UserDataAccessInterface;
@@ -28,6 +29,11 @@ public class MainMenuFrame extends JFrame {
     private final User user;
     private final ProfilePresenter profilePresenter;
     private final ProfileController profileController;
+    private static LogoutController logoutController;
+
+    public static void setLogoutController(LogoutController controller) {
+        logoutController = controller;
+    }
 
     public MainMenuFrame(User user) {
         this.user = user;
@@ -73,7 +79,7 @@ public class MainMenuFrame extends JFrame {
         c.insets = new Insets(25, 25, 25, 25);
 
         // =====================================
-        // New Size Settings (your requirements)
+        // New Size Settings
         // =====================================
         int SMALL_W = 560, SMALL_H = 350;
 
@@ -143,6 +149,21 @@ public class MainMenuFrame extends JFrame {
                 LOGOUT_W, LOGOUT_H
         );
 
+        JPanel bottomRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomRight.setOpaque(false);
+        bottomRight.add(logoutBtn);
+        root.add(bottomRight, BorderLayout.SOUTH);
+
+// --- Action listener wired to LogoutController ---
+        logoutBtn.addActionListener(e -> {
+            if (logoutController != null) {
+                logoutController.execute(); // calls LogoutInteractor
+                dispose(); // close MainMenuFrame
+            } else {
+                System.err.println("LogoutController not set!");
+            }
+        });
+
         // =====================================
         // Add Buttons to Layout
         // =====================================
@@ -164,10 +185,10 @@ public class MainMenuFrame extends JFrame {
         centerPanel.add(depositBtn, c);
 
         // === logout button stays at bottom-right ===
-        JPanel bottomRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        bottomRight.setOpaque(false);
-        bottomRight.add(logoutBtn);
-        root.add(bottomRight, BorderLayout.SOUTH);
+        JPanel bottomRight2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomRight2.setOpaque(false);
+        bottomRight2.add(logoutBtn);
+        root.add(bottomRight2, BorderLayout.SOUTH);
 
         // =====================================
         // Button actions
