@@ -58,4 +58,8 @@ public class User {
     public void addGamePlayed() {
         gamesPlayed++;
     }
+
+    public void incrementBetCount() {
+        totalBets++;
+    }
 }
