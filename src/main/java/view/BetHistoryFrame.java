@@ -68,7 +68,7 @@ public class BetHistoryFrame extends JFrame {
 
             // Save user data to persist gamesPlayed count and balance changes
             userDAO.save(user);
-
+            interactor.betDAO.replaceByUsernameAndId(user.getUsername(), selected.getId(), selected);
             // Show result
             if (selected.getBetwon()) {
                 JOptionPane.showMessageDialog(this,
@@ -80,6 +80,10 @@ public class BetHistoryFrame extends JFrame {
 
             // Update UI
             model.removeElement(selected);
+            allModel.removeAllElements();
+            for (Sportbet b : interactor.getUserBets(user.getUsername())) {
+                allModel.addElement(b);
+            }
         });
 
         JPanel bottomPanel = new JPanel(new FlowLayout());
