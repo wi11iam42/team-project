@@ -8,7 +8,9 @@ import entity.*;
 import interface_adapter.Blackjack.BlackjackController;
 import interface_adapter.Blackjack.BlackjackPresenter;
 import interface_adapter.Blackjack.BlackjackViewModel;
+import interface_adapter.GameSelect.GameSelectViewModel;
 import use_case.*;
+import view.GameSelectView;
 
 
 public class BlackjackView extends JFrame {
@@ -27,6 +29,11 @@ public class BlackjackView extends JFrame {
     private JLabel[][] cardSlots = new JLabel[2][5];
 // row 0 = dealer, row 1 = player
 
+    private JButton dealButton;
+    private JButton hitButton;
+    private JButton standButton;
+    private JButton betSubmit;
+    private JButton returnButton;
 
     public BlackjackView(User user) {
 // === Build Clean Architecture Stack ===
@@ -74,15 +81,19 @@ public class BlackjackView extends JFrame {
         betPanel.add(betField, BorderLayout.CENTER);
         betPanel.add(betSubmit, BorderLayout.EAST);
 
-
-        JLabel winningsLabel = new JLabel("Winnings:");
-        JTextField winningsField = new JTextField("$0.00");
-        winningsField.setEditable(false);
-
-
-        JButton cashoutButton = new JButton("Cashout");
-        cashoutButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "Cashout not implemented"));
-
+        returnButton = new JButton("Return to Game Select");
+        returnButton.addActionListener(e -> {
+            GameSelectViewModel viewModel = new GameSelectViewModel(current_user);
+            GameSelectView gameSelectView = new GameSelectView(viewModel);
+            JFrame gameSelectFrame = new JFrame("366");
+            gameSelectFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            gameSelectFrame.add(gameSelectView);
+            gameSelectFrame.setMinimumSize(new Dimension(1700, 1050));
+            gameSelectFrame.setPreferredSize(new Dimension(1700, 1050));
+            gameSelectFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            gameSelectFrame.setVisible(true);
+            dispose();
+        });
 
         leftPanel.add(walletLabel);
         leftPanel.add(walletField);
@@ -90,10 +101,7 @@ public class BlackjackView extends JFrame {
         leftPanel.add(betLabel);
         leftPanel.add(betPanel);
         leftPanel.add(Box.createVerticalStrut(10));
-        leftPanel.add(winningsLabel);
-        leftPanel.add(winningsField);
-        leftPanel.add(Box.createVerticalStrut(10));
-        leftPanel.add(cashoutButton);
+        leftPanel.add(returnButton);
 
 // ================= CENTER (TABLE) =================
         JPanel tablePanel = new JPanel(new BorderLayout(10, 10));
