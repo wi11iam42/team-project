@@ -10,6 +10,7 @@ import interface_adapter.Mines.MinesPresenter;
 import interface_adapter.Mines.MinesViewModel;
 import use_case.*;
 import view.GameSelectView;
+import data_access.FileUserDataAccessObject;
 
 public class MinesView extends JFrame {
 
@@ -178,7 +179,12 @@ public class MinesView extends JFrame {
         // withdraw bet immediately
         currentBet = betAmount;
         user.withdraw(currentBet);
+        user.addGamePlayed();
         walletField.setText(String.format("$%.2f", user.getBalance()));
+
+        // Save user data to persist gamesPlayed count
+        FileUserDataAccessObject userDAO = new FileUserDataAccessObject("users.csv", new UserFactory());
+        userDAO.save(user);
 
         // create a fresh game & CA stack using chosen mine count
         int mines = multSlider.getValue();
