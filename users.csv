@@ -1,5 +1,2 @@
-username,password,balance,totalBets,gamesPlayed
-lin,1234,5000.000000,0,0
-issei,a,1000.000000,0,0
-nchek,1,123451.000000,0,0
-BillChen,123456,1525.000000,15,8
+username,password
+bill,1234
