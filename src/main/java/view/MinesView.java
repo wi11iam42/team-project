@@ -5,10 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 
 import entity.*;
+import interface_adapter.GameSelect.GameSelectViewModel;
 import interface_adapter.Mines.MinesController;
 import interface_adapter.Mines.MinesPresenter;
 import interface_adapter.Mines.MinesViewModel;
 import use_case.*;
+import view.GameSelectView;
 
 
 public class MinesView extends JFrame {
@@ -16,9 +18,11 @@ public class MinesView extends JFrame {
 
     private final MinesController controller;
     private final MinesViewModel viewModel;
+    private final User user;
 
 
     public MinesView(User user) {
+        this.user = user;
         viewModel = new MinesViewModel();
         MinesPresenter presenter = new MinesPresenter(viewModel);
         MinesGame game = new MinesGame(5, 5);
@@ -72,6 +76,20 @@ public class MinesView extends JFrame {
         JButton cashoutButton = new JButton("Cashout");
         cashoutButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "Cashout not implemented"));
 
+        JButton returnButton = new JButton("Return to Game Select");
+        returnButton.addActionListener(e -> {
+            GameSelectViewModel viewModel = new GameSelectViewModel(user);
+            GameSelectView gameSelectView = new GameSelectView(viewModel);
+            JFrame gameSelectFrame = new JFrame("366");
+            gameSelectFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            gameSelectFrame.add(gameSelectView);
+            gameSelectFrame.setMinimumSize(new Dimension(1700, 1050));
+            gameSelectFrame.setPreferredSize(new Dimension(1700, 1050));
+            gameSelectFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            gameSelectFrame.setVisible(true);
+            dispose();
+        });
+
 
         leftPanel.add(walletLabel);
         leftPanel.add(walletField);
@@ -86,6 +104,8 @@ public class MinesView extends JFrame {
         leftPanel.add(winningsField);
         leftPanel.add(Box.createVerticalStrut(10));
         leftPanel.add(cashoutButton);
+        leftPanel.add(Box.createVerticalStrut(10));
+        leftPanel.add(returnButton);
 
 
         JPanel grid = new JPanel(new GridLayout(5, 5, 5, 5));
