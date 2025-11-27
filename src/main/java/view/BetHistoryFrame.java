@@ -12,6 +12,8 @@ public class BetHistoryFrame extends JFrame {
     public BetHistoryFrame(User user, JFrame MainMenu){
 
         SportbetInteractor interactor = new SportbetInteractor();
+        data_access.FileUserDataAccessObject userDAO =
+                new data_access.FileUserDataAccessObject("users.csv", new entity.UserFactory());
 
         setTitle("Bet History");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -48,6 +50,8 @@ public class BetHistoryFrame extends JFrame {
         add(splitPane, BorderLayout.CENTER);
 
         backButton.addActionListener(e -> {
+            // Save user data before returning to ensure database is synchronized
+            userDAO.save(user);
             new MainMenuFrame(user);
             dispose();
         });
@@ -61,6 +65,9 @@ public class BetHistoryFrame extends JFrame {
 
             // Call interactor to simulate bet
             interactor.simulateBet(selected, user);
+
+            // Save user data to persist gamesPlayed count and balance changes
+            userDAO.save(user);
 
             // Show result
             if (selected.getBetwon()) {
