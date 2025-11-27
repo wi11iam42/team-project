@@ -19,8 +19,16 @@ public class BlackjackInteractor {
 
     public void playerHit() {
         game.playerHit();
+        // Always update the hands after a hit
         presenter.presentHands(game);
+
+        //IF PLAYER BUSTS → END ROUND IMMEDIATELY
+        if (game.getPlayerHand().getValue() > 21) {
+            presenter.presentResult(game, GameResult.PLAYER_BUST);
+            return;
+        }
     }
+
 
     public void stand() {
         game.dealerPlay();
