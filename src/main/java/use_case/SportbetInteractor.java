@@ -47,6 +47,8 @@ public class SportbetInteractor {
         if (won) {
             user.deposit(bet.getPayout());
         }
+        userDAO.save(user);
+        betDAO.replaceByUsernameAndId(user.getUsername(),bet.getId(),bet);
 
         bet.setStatus("completed");
 

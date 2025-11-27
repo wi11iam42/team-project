@@ -25,8 +25,8 @@ public class BetHistoryFrame extends JFrame {
 
         // Top list (active bets)
         DefaultListModel<Sportbet> model = new DefaultListModel<>();
-        for (Sportbet b : user.getSbs()) {
-            if (!b.getStatus().equals("completed")) { // only active bets
+        for (Sportbet b : interactor.getUserBets(user.getUsername())) {
+            if (!b.getStatus().equalsIgnoreCase("completed")) { // only active bets
                 model.addElement(b);
             }
         }
@@ -36,7 +36,7 @@ public class BetHistoryFrame extends JFrame {
 
         // Bottom list (all bets)
         DefaultListModel<Sportbet> allModel = new DefaultListModel<>();
-        for (Sportbet b : user.getSbs()) {
+        for (Sportbet b : interactor.getUserBets(user.getUsername())) {
             allModel.addElement(b);
         }
         JList<Sportbet> allBetsList = new JList<>(allModel);
