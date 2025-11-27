@@ -1,6 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import data_access.SportsAPIDataAccess;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 
@@ -26,6 +27,11 @@ import java.awt.*;
 public class Mainalternate {
 
     public static void main(String[] args) {
+
+        System.setProperty("sun.java2d.uiScale", "1");
+
+        SportsAPIDataAccess data = new SportsAPIDataAccess();
+        data.readdata();
 
         UserFactory userFactory = new UserFactory();
         final FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("users.csv", userFactory);

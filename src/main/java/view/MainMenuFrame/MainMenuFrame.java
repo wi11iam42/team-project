@@ -18,9 +18,9 @@ import java.awt.*;
 
 public class MainMenuFrame extends JFrame {
 
-    static {
-        System.setProperty("sun.java2d.uiScale", "1");
-    }
+//    static {
+//        System.setProperty("sun.java2d.uiScale", "1");
+//    }
 
     private final ProfilePresenter profilePresenter;
     private final ProfileController profileController;
