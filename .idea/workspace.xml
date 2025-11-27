@@ -49,12 +49,12 @@
     &quot;assignee&quot;: &quot;wi11iam42&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/wi11iam42/team-project.git&quot;,
-    &quot;accountId&quot;: &quot;654b9790-94d7-43c5-8987-3a9c93074222&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/wi11iam42/team-project.git",
+    "accountId": "5d338287-56e4-46d9-be42-b7dacef92387"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -70,6 +70,7 @@
   "keyToString": {
     "Application.AlternativeMain.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Mainalternate.executor": "Run",
     "Application.MinesView.executor": "Run",
     "Application.blackjackview.executor": "Run",
     "Application.minesview.executor": "Run",

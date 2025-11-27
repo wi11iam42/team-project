@@ -29,9 +29,9 @@ import java.util.List;
 
 public class MainMenuFrame extends JFrame {
 
-    static {
-        System.setProperty("sun.java2d.uiScale", "1");
-    }
+//    static {
+//        System.setProperty("sun.java2d.uiScale", "1");
+//    }
 
     private final User user;
     private final UserDataAccessInterface userDAO;
