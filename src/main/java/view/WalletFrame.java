@@ -12,18 +12,19 @@ public class WalletFrame extends JFrame {
 
     public WalletFrame(WalletViewModel vm, WalletController controller) {
         setTitle("Wallet");
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // ★★ FULLSCREEN ★★
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(false);   // Keep title bar
 
         walletView = new WalletView(vm, controller);
         setContentPane(walletView);
-
-        // Optional: background color
         walletView.setBackground(new Color(20,20,20));
+
+        pack();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        Rectangle bounds = GraphicsEnvironment
+                .getLocalGraphicsEnvironment()
+                .getMaximumWindowBounds();
+        setBounds(bounds);
 
         setVisible(true);
     }

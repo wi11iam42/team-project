@@ -14,12 +14,13 @@ public class WalletView extends JPanel implements PropertyChangeListener {
     private final WalletViewModel viewModel;
     private final WalletController controller;
 
+    private final JButton depositButton = new GoldButton("💵 DEPOSIT");
+    private final JButton withdrawButton = new GoldButton("💸 WITHDRAW");
+    private final JButton backButton = new GoldButton("⬅ BACK");
+
     private final JLabel balanceLabel = new JLabel("", SwingConstants.CENTER);
     private final JTextArea historyArea = new JTextArea();
     private final JTextField amountField = new JTextField(15);
-    private final JButton depositButton = new JButton("💵 DEPOSIT");
-    private final JButton withdrawButton = new JButton("💸 WITHDRAW");
-    private final JButton backButton = new JButton("⬅ BACK");
 
     public WalletView(WalletViewModel viewModel, WalletController controller) {
         this.viewModel = viewModel;
@@ -37,7 +38,7 @@ public class WalletView extends JPanel implements PropertyChangeListener {
 
     private void setupTop() {
         JPanel top = new JPanel(new BorderLayout());
-        top.setBackground(new Color(0, 0, 0, 180));
+        top.setOpaque(false);
         top.setBorder(BorderFactory.createEmptyBorder(40, 0, 40, 0));
 
         balanceLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 80));
@@ -52,22 +53,25 @@ public class WalletView extends JPanel implements PropertyChangeListener {
         center.setOpaque(false);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
 
-        JLabel amountLabel = new JLabel("💰 Amount:");
+        JLabel amountLabel = new JLabel("▢ Amount:");
         amountLabel.setFont(new Font("Bahnschrift", Font.BOLD, 55));
         amountLabel.setForeground(new Color(255, 215, 0));
+        amountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         amountField.setFont(new Font("Bahnschrift", Font.PLAIN, 50));
         amountField.setHorizontalAlignment(JTextField.CENTER);
         amountField.setMaximumSize(new Dimension(600, 80));
         amountField.setPreferredSize(new Dimension(600, 80));
+        amountField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel amountRow = new JPanel();
         amountRow.setOpaque(false);
         amountRow.add(amountLabel);
+        amountRow.add(Box.createHorizontalStrut(20));
         amountRow.add(amountField);
 
-        depositButton.setPreferredSize(new Dimension(350, 100));
-        withdrawButton.setPreferredSize(new Dimension(350, 100));
+        depositButton.setPreferredSize(new Dimension(420, 120));
+        withdrawButton.setPreferredSize(new Dimension(420, 120));
 
         depositButton.addActionListener(e -> controller.executeDeposit(amountField.getText()));
         withdrawButton.addActionListener(e -> controller.executeWithdraw(amountField.getText()));
@@ -89,25 +93,29 @@ public class WalletView extends JPanel implements PropertyChangeListener {
     private void setupBottom() {
         JPanel bottom = new JPanel(new BorderLayout());
         bottom.setOpaque(false);
+        bottom.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         historyArea.setFont(new Font("Bahnschrift", Font.PLAIN, 30));
         historyArea.setForeground(new Color(255, 215, 0));
-        historyArea.setBackground(new Color(35, 35, 35));
+        historyArea.setBackground(new Color(30, 30, 30));
         historyArea.setEditable(false);
+        historyArea.setMargin(new Insets(10, 10, 10, 10));
 
         JScrollPane scrollPane = new JScrollPane(historyArea);
-        scrollPane.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(255, 215, 0), 5),
-                "Transaction History",
-                0, 0,
-                new Font("Bahnschrift", Font.BOLD, 40),
-                new Color(255, 215, 0)
-        ));
+        scrollPane.setPreferredSize(new Dimension(1600, 350));
+        scrollPane.setBorder(
+                BorderFactory.createTitledBorder(
+                        BorderFactory.createLineBorder(new Color(255, 215, 0), 5),
+                        "Transaction History",
+                        0, 0,
+                        new Font("Bahnschrift", Font.BOLD, 40),
+                        new Color(255, 215, 0)
+                )
+        );
 
         JPanel backPanel = new JPanel();
         backPanel.setOpaque(false);
-
-        backButton.setPreferredSize(new Dimension(350, 100));
+        backButton.setPreferredSize(new Dimension(420, 120));
         backPanel.add(backButton);
 
         bottom.add(scrollPane, BorderLayout.CENTER);
@@ -126,5 +134,39 @@ public class WalletView extends JPanel implements PropertyChangeListener {
         balanceLabel.setText("💎 Balance: $" + state.getBalance());
         historyArea.setText(state.getHistoryText());
         amountField.setText("");
+    }
+
+    static class GoldButton extends JButton {
+
+        private static final Color GOLD = new Color(255, 215, 0);
+
+        public GoldButton(String text) {
+            super(text);
+            setForeground(GOLD);
+            setFont(new Font("Segoe UI Emoji", Font.BOLD, 40));
+            setFocusPainted(false);
+            setContentAreaFilled(false);
+            setBorderPainted(false);
+            setOpaque(false);
+            setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setColor(new Color(0, 0, 0, 200));
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+
+            g2.setColor(GOLD);
+            g2.setStroke(new BasicStroke(4));
+            g2.drawRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+
+            g2.dispose();
+
+            super.paintComponent(g);
+        }
     }
 }
