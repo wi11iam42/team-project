@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.login.LoginState;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -73,7 +74,22 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        cancel.addActionListener(this);
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usernameInputField.setText("");
+                passwordInputField.setText("");
+                repeatPasswordInputField.setText("");
+
+
+
+                final SignupState currentState = signupViewModel.getState();
+                currentState.setUsername("");
+                currentState.setPassword("");
+                currentState.setRepeatPassword("");
+                signupViewModel.setState(currentState);
+            }
+        });
 
         addUsernameListener();
         addPasswordListener();
