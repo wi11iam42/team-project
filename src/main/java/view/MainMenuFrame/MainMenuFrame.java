@@ -2,7 +2,6 @@ package view.MainMenuFrame;
 
 import app.AppBuilder;
 import data_access.FileUserDataAccessObject;
-import data_access.InMemoryUserDataAccess;
 import data_access.SportbetFileDataAccessObject;
 import data_access.UserDataAccessInterface;
 import entity.Sportbet;
@@ -13,25 +12,20 @@ import interface_adapter.Profile.ProfilePresenter;
 import interface_adapter.Profile.ProfileViewModel;
 import interface_adapter.Wallet.WalletController;
 import interface_adapter.Wallet.WalletPresenter;
-import interface_adapter.Wallet.WalletViewModel;
 import interface_adapter.Wallet.WalletState;
+import interface_adapter.Wallet.WalletViewModel;
 import use_case.profile.ProfileInteractor;
 import view.BetHistoryFrame;
 import view.ProfileFrame;
 import view.SportbetFrame;
-import view.WalletView;
+import view.WalletFrame;
 import use_case.Wallet.WalletInteractor;
-
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class MainMenuFrame extends JFrame {
-
-    static {
-        System.setProperty("sun.java2d.uiScale", "1");
-    }
 
     private final User user;
     private final UserDataAccessInterface userDAO;
@@ -63,19 +57,16 @@ public class MainMenuFrame extends JFrame {
         ProfileInteractor interactor = new ProfileInteractor(userDAO, profilePresenter);
         profileController = new ProfileController(interactor);
 
-        // === Background ===
         String bgPath = getClass().getResource("/Image_1-6.jpeg").getPath();
         BackgroundPanel root = new BackgroundPanel(bgPath);
         root.setLayout(new BorderLayout());
         setContentPane(root);
 
-        // === Title ===
         JLabel title = new JLabel("Welcome to BET366", SwingConstants.CENTER);
         title.setFont(new Font("Verdana", Font.BOLD, 90));
         title.setForeground(Color.BLACK);
         root.add(title, BorderLayout.NORTH);
 
-        // Center panel
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
         root.add(centerPanel, BorderLayout.CENTER);
@@ -83,79 +74,48 @@ public class MainMenuFrame extends JFrame {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(25, 25, 25, 25);
 
-        // =====================================
-        // New Size Settings (your requirements)
-        // =====================================
         int SMALL_W = 560, SMALL_H = 350;
-
-        // restore original width, but 1.5× height
         int MID_W = 660;
-        int MID_H_NEW = (int) (350 * 1.5);   // 525
-
+        int MID_H_NEW = (int) (350 * 1.5);
         int BIG_W = 1250, BIG_H = 320;
-
-        // logout → quarter size
         int LOGOUT_W = SMALL_W / 4;
         int LOGOUT_H = SMALL_H / 4;
 
-        // =====================================
-        // Buttons
-        // =====================================
-
         JButton profileBtn = newButton(
-                "<html><center>" +
-                        "<span style='font-size:50px;'>👤</span><br>" +
-                        "<span style='font-size:40px;'>Profile</span>" +
-                        "</center></html>",
+                "<html><center><span style='font-size:50px;'>👤</span><br>" +
+                        "<span style='font-size:40px;'>Profile</span></center></html>",
                 SMALL_W, SMALL_H
         );
 
         JButton walletBtn = newButton(
-                "<html><center>" +
-                        "<span style='font-size:50px;'>💰</span><br>" +
-                        "<span style='font-size:36px;'>Wallet</span>" +
-                        "</center></html>",
+                "<html><center><span style='font-size:50px;'>💰</span><br>" +
+                        "<span style='font-size:36px;'>Wallet</span></center></html>",
                 SMALL_W, SMALL_H
         );
 
-        // === Sport Bet (bigger height + bigger font) ===
         JButton sportBetBtn = newButton(
-                "<html><center>" +
-                        "<span style='font-size:75px;'>🏀</span><br>" +
-                        "<span style='font-size:55px;'>Sport Bet</span>" +
-                        "</center></html>",
+                "<html><center><span style='font-size:75px;'>🏀</span><br>" +
+                        "<span style='font-size:55px;'>Sport Bet</span></center></html>",
                 MID_W, MID_H_NEW
         );
 
-        // === Play Bet Game (same style) ===
         JButton gameSelectBtn = newButton(
-                "<html><center>" +
-                        "<span style='font-size:75px;'>🂡</span><br>" +
-                        "<span style='font-size:55px;'>Play Bet Game</span>" +
-                        "</center></html>",
+                "<html><center><span style='font-size:75px;'>🂡</span><br>" +
+                        "<span style='font-size:55px;'>Play Bet Game</span></center></html>",
                 MID_W, MID_H_NEW
         );
 
         JButton historyBtn = newButton(
-                "<html><center>" +
-                        "<span style='font-size:50px;'>📝</span><br>" +
-                        "<span style='font-size:40px;'>View Bet History</span>" +
-                        "</center></html>",
+                "<html><center><span style='font-size:50px;'>📝</span><br>" +
+                        "<span style='font-size:40px;'>View Bet History</span></center></html>",
                 BIG_W, BIG_H
         );
 
-        // === Logout small button ===
         JButton logoutBtn = newButton(
-                "<html><center>" +
-                        "<span style='font-size:25px;'>🚪</span><br>" +
-                        "<span style='font-size:22px;'>Logout</span>" +
-                        "</center></html>",
+                "<html><center><span style='font-size:25px;'>🚪</span><br>" +
+                        "<span style='font-size:22px;'>Logout</span></center></html>",
                 LOGOUT_W, LOGOUT_H
         );
-
-        // =====================================
-        // Add Buttons to Layout
-        // =====================================
 
         c.gridx = 0; c.gridy = 0;
         centerPanel.add(profileBtn, c);
@@ -173,18 +133,12 @@ public class MainMenuFrame extends JFrame {
         c.gridx = 0; c.gridy = 2;
         centerPanel.add(walletBtn, c);
 
-        // === logout button stays at bottom-right ===
         JPanel bottomRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         bottomRight.setOpaque(false);
         bottomRight.add(logoutBtn);
         root.add(bottomRight, BorderLayout.SOUTH);
 
-        // =====================================
-        // Button actions
-        // =====================================
-
         profileBtn.addActionListener(e -> {
-            // Save user data before loading profile to ensure latest information is displayed
             userDAO.save(user);
             profileController.loadProfile(user.getUsername());
             ProfileViewModel vm = profilePresenter.getViewModel();
@@ -210,7 +164,6 @@ public class MainMenuFrame extends JFrame {
         });
 
         walletBtn.addActionListener(e -> {
-
             WalletViewModel walletVM = new WalletViewModel();
             WalletPresenter walletPresenter = new WalletPresenter(walletVM);
             WalletInteractor walletInteractor = new WalletInteractor(userDAO, walletPresenter);
@@ -220,36 +173,22 @@ public class MainMenuFrame extends JFrame {
             state.setUsername(user.getUsername());
 
             User persisted = userDAO.get(user.getUsername());
-            if (persisted != null) {
-                state.setBalance(persisted.getBalance());
-            } else {
-                state.setBalance(user.getBalance());
-            }
+            if (persisted != null) state.setBalance(persisted.getBalance());
+            else state.setBalance(user.getBalance());
 
-            JFrame walletFrame = new JFrame("Wallet");
-            walletFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            walletFrame.setSize(600, 400);
-            walletFrame.setLocationRelativeTo(this);
-
-            WalletView walletView = new WalletView(walletVM, walletController);
-            walletFrame.setContentPane(walletView);
-
-            walletVM.firePropertyChange();
+            WalletFrame walletFrame = new WalletFrame(walletVM, walletController);
 
             this.setVisible(false);
-            walletView.getBackButton().addActionListener(ev -> {
+
+            walletFrame.getWalletView().getBackButton().addActionListener(ev -> {
                 walletFrame.dispose();
                 User updated = userDAO.get(user.getUsername());
-                if (updated != null) {
-                    user.setBalance(updated.getBalance());
-                }
+                if (updated != null) user.setBalance(updated.getBalance());
                 this.setVisible(true);
             });
 
-            walletFrame.setVisible(true);
+            walletVM.firePropertyChange();
         });
-
-
 
         logoutBtn.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Logged Out!");
@@ -291,5 +230,4 @@ public class MainMenuFrame extends JFrame {
             super.paintComponent(g);
         }
     }
-
 }
