@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="Polish the home page and adjust the layout">
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Wallet/WalletController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Wallet/WalletPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Wallet/WalletState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/Wallet/WalletViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/Wallet/WalletInputBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/Wallet/WalletInputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/Wallet/WalletInteractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/Wallet/WalletOutputBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/Wallet/WalletOutputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/WalletView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/WalletFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/WalletUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/LoginViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/LoginViewTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +49,12 @@
     &quot;assignee&quot;: &quot;wi11iam42&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/wi11iam42/team-project.git&quot;,
-    &quot;accountId&quot;: &quot;5d338287-56e4-46d9-be42-b7dacef92387&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/wi11iam42/team-project.git",
+    "accountId": "5d338287-56e4-46d9-be42-b7dacef92387"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -65,7 +79,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "wallet__restructure",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -73,7 +87,7 @@
     "应用程序.Main.executor": "Run",
     "应用程序.Mainalternate.executor": "Run"
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="team-project" />
@@ -86,13 +100,6 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -182,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763913412399</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="slightly better game select ui, still need to make buttons bigger">
+      <option name="closed" value="true" />
+      <created>1764092514211</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1764092514211</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,17 +220,7 @@
     <MESSAGE value="Change The home page." />
     <MESSAGE value="organization and renaming" />
     <MESSAGE value="Polish the home page and adjust the layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Polish the home page and adjust the layout" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/view/GameSelectView.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="slightly better game select ui, still need to make buttons bigger" />
+    <option name="LAST_COMMIT_MESSAGE" value="slightly better game select ui, still need to make buttons bigger" />
   </component>
 </project>
