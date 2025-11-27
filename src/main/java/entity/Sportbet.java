@@ -12,6 +12,7 @@ public class Sportbet {
     private double stake;
     private double payout;
     private boolean betwon;
+    private User user;
 
     public Sportbet(String id, String sport, String team1, String team2,
                     double team1price, double team2price, String status){
@@ -49,6 +50,9 @@ public class Sportbet {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public User getUser() {return user; }
+    public void setUser(User user) {this.user = user; }
 
     public String getSelection(){return this.selection;}
     public void setSelection(String team){
