@@ -1,6 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import data_access.SportsAPIDataAccess;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 
@@ -8,8 +9,6 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 
-import interface_adapter.logout.LogoutController;
-import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
@@ -17,7 +16,6 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.loggedin.LoggedInViewModel;
 
 import use_case.login.LoginInteractor;
-import use_case.logout.LogoutInteractor;
 import use_case.signup.SignupInteractor;
 
 import view.LoginView;
@@ -30,6 +28,11 @@ public class Mainalternate {
 
     public static void main(String[] args) {
 
+        System.setProperty("sun.java2d.uiScale", "1");
+
+        SportsAPIDataAccess data = new SportsAPIDataAccess();
+        data.readdata();
+
         UserFactory userFactory = new UserFactory();
         final FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("users.csv", userFactory);
 
@@ -38,20 +41,9 @@ public class Mainalternate {
         LoginViewModel loginVM = new LoginViewModel();
         SignupViewModel signupVM = new SignupViewModel();
         LoggedInViewModel loggedInVM = new LoggedInViewModel();
-        LoginView loginView = new LoginView(loginVM);
-
-        LogoutPresenter logoutPresenter =
-                new LogoutPresenter(viewManager, loginVM, loginView);
-
-        LogoutInteractor logoutInteractor =
-                new LogoutInteractor(userDataAccessObject, logoutPresenter);
-
-        LogoutController logoutController =
-                new LogoutController(logoutInteractor);
 
         LoginPresenter loginPresenter =
-                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDataAccessObject,
-                        logoutController, loginView);
+                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDataAccessObject);
 
         SignupPresenter signupPresenter =
                 new SignupPresenter(viewManager, signupVM, loginVM);
@@ -68,6 +60,7 @@ public class Mainalternate {
         SignupController signupController =
                 new SignupController(signupInteractor);
 
+        LoginView loginView = new LoginView(loginVM);
         loginView.setLoginController(loginController);
 
         SignupView signupView = new SignupView(signupVM);
