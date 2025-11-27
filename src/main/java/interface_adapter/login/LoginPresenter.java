@@ -6,6 +6,7 @@ import interface_adapter.loggedin.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+import use_case.login.LoginUserDataAccessInterface;
 import view.MainMenuFrame.MainMenuFrame;
 import entity.User;
 
@@ -16,14 +17,18 @@ public class LoginPresenter implements LoginOutputBoundary {
     private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
     private final SignupViewModel signupViewModel;
+    private final LoginUserDataAccessInterface userDataAccess;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
-                          LoginViewModel loginViewModel, SignupViewModel signupViewModel) {
+                          LoginViewModel loginViewModel,
+                          SignupViewModel signupViewModel,
+                          LoginUserDataAccessInterface userDataAccess) {
         this.viewManagerModel = viewManagerModel;
         this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
         this.signupViewModel = signupViewModel;
+        this.userDataAccess = userDataAccess;
     }
 
     @Override
@@ -34,9 +39,9 @@ public class LoginPresenter implements LoginOutputBoundary {
 
         loginViewModel.setState(new LoginState());
 
-        User loggedInUser = new User(response.getUsername(), 0, 0, 0, ""); // create User entity
+        String username = response.getUsername();
+        User loggedInUser = userDataAccess.get(username);
         new MainMenuFrame(loggedInUser);
-
     }
 
     @Override

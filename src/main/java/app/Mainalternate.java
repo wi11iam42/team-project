@@ -43,7 +43,7 @@ public class Mainalternate {
         LoggedInViewModel loggedInVM = new LoggedInViewModel();
 
         LoginPresenter loginPresenter =
-                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM);
+                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDataAccessObject);
 
         SignupPresenter signupPresenter =
                 new SignupPresenter(viewManager, signupVM, loginVM);

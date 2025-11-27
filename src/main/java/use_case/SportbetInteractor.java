@@ -1,9 +1,12 @@
 package use_case;
 
+import data_access.SportbetFileDataAccessObject;
 import entity.Sportbet;
 import entity.User;
 
 public class SportbetInteractor {
+    private final SportbetFileDataAccessObject betDAO =
+            new SportbetFileDataAccessObject("bets.csv");
 
     // Places the bet: set selection, stake, compute payout
     public void placeBet(Sportbet bet, User user, double stake, String teamSelection) {
@@ -39,5 +42,7 @@ public class SportbetInteractor {
         }
 
         bet.setStatus("completed");
+
+    betDAO.saveBet(user.getUsername(), bet);
     }
 }
