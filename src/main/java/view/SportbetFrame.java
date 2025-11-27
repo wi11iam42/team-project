@@ -1,5 +1,6 @@
 package view;
 
+import data_access.SportbetFileDataAccessObject;
 import data_access.SportsAPIDataAccess;
 import entity.Sportbet;
 import entity.User;
@@ -14,6 +15,7 @@ public class SportbetFrame extends JFrame {
     public SportbetFrame(User user, JFrame mainMenu){
 
         SportbetInteractor interactor = new SportbetInteractor();
+        SportbetFileDataAccessObject SbDAO = new SportbetFileDataAccessObject("bets.csv");
 
         setTitle("Place a Sports Bet");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -71,7 +73,6 @@ public class SportbetFrame extends JFrame {
                 return;
             }
 
-            // CLEAN ARCHITECTURE: interactor handles everything
             interactor.placeBet(
                     s,
                     user,
