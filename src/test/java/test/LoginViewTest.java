@@ -35,7 +35,7 @@ public class LoginViewTest {
         LoggedInViewModel loggedInVM = new LoggedInViewModel();
 
         LoginPresenter loginPresenter =
-                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM);
+                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDAO);
 
         SignupPresenter signupPresenter =
                 new SignupPresenter(viewManager, signupVM, loginVM);
