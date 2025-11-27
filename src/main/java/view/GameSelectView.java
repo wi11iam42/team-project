@@ -3,6 +3,7 @@ package view;
 import interface_adapter.GameSelect.GameSelectController;
 import interface_adapter.GameSelect.GameSelectState;
 import interface_adapter.GameSelect.GameSelectViewModel;
+import view.MainMenuFrame.BackgroundPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.beans.PropertyChangeListener;
 /**
  * The View for when the user is logging into the program.
  */
-public class GameSelectView extends JPanel implements ActionListener, PropertyChangeListener {
+public class GameSelectView extends BackgroundPanel implements ActionListener, PropertyChangeListener {
 
     private final String viewName = "Game Select";
     private final GameSelectViewModel gameSelectViewModel;
@@ -22,7 +23,9 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
 
     public GameSelectView(GameSelectViewModel gameSelectViewModel) {
 
-        JTextField stakesInputField = new JTextField(10);
+        super();
+
+//        JTextField stakesInputField = new JTextField(10);
 
         JButton BackButton = new JButton("Back");
 
@@ -34,14 +37,15 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
         buttons.add(MinesButton);
         buttons.add(WheelButton);
         buttons.add(BlackJackButton);
+        buttons.setOpaque(false);
 
-        LabelTextPanel stakesInfo = new LabelTextPanel(
-                new JLabel("Stakes:"), stakesInputField
-        );
+//        LabelTextPanel stakesInfo = new LabelTextPanel(
+//                new JLabel("Stakes:"), stakesInputField
+//       );
 
-        JPanel finalButton = new JPanel();
-        JButton playButton = new JButton("Play!");
-        finalButton.add(playButton);
+//        JPanel finalButton = new JPanel();
+//        JButton playButton = new JButton("Play!");
+//        finalButton.add(playButton);
 
         this.gameSelectViewModel = gameSelectViewModel;
         this.gameSelectController = new GameSelectController();
@@ -49,8 +53,8 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(BackButton);
         this.add(buttons);
-        this.add(stakesInfo);
-        this.add(finalButton);
+//        this.add(stakesInfo,1);
+//        this.add(finalButton,1);
 
         BackButton.addActionListener(
                 new ActionListener() {
@@ -69,6 +73,7 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(MinesButton)) {
                             gameSelectViewModel.getState().setGame("Mines");
+                            go();
                         }
                     }
                 }
@@ -89,23 +94,25 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(BlackJackButton)) {
                             gameSelectViewModel.getState().setGame("BlackJack");
+                            go();
                         }
                     }
                 }
         );
 
-        playButton.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(playButton)) {
-                            GameSelectState currentState = gameSelectViewModel.getState();
-                            gameSelectController.execute(currentState);
-                            SwingUtilities.getWindowAncestor(GameSelectView.this).dispose();
-                        }
-                    }
-                }
-        );
+//        playButton.addActionListener(
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+//                        if (evt.getSource().equals(playButton)) {
+//                            GameSelectState currentState = gameSelectViewModel.getState();
+//                            gameSelectController.execute(currentState);
+//                            SwingUtilities.getWindowAncestor(GameSelectView.this).dispose();
+//                        }
+//                    }
+//                }
+//        );
     }
+
 
     /**
      * React to a button click that results in evt.
@@ -122,6 +129,12 @@ public class GameSelectView extends JPanel implements ActionListener, PropertyCh
     }
 
     private void setFields(GameSelectState state) {
+    }
+
+    public void go(){
+        GameSelectState currentState = gameSelectViewModel.getState();
+        gameSelectController.execute(currentState);
+        SwingUtilities.getWindowAncestor(GameSelectView.this).dispose();
     }
 
     public String getViewName() {
