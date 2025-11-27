@@ -11,9 +11,10 @@ public class Sportbet {
     private String status;
     private double stake;
     private double payout;
+    private boolean betwon;
 
     public Sportbet(String id, String sport, String team1, String team2,
-                     double team1price, double team2price, String status){
+                    double team1price, double team2price, String status){
         this.id = id;
         this.sport = sport;
         this.team1 = team1;
@@ -24,6 +25,7 @@ public class Sportbet {
 
         this.stake = 0;
     }
+
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -42,38 +44,45 @@ public class Sportbet {
     public double getTeam2price() { return team2price; }
     public void setTeam2price(double team2price) { this.team2price = team2price; }
 
+    public boolean getBetwon() { return betwon; }
+    public void setBetwon(boolean won) {this.betwon = won; }
+
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
     public String getSelection(){return this.selection;}
-    public double getStake() { return stake; }
-    public void setStake(double stake) { this.stake = stake; }
     public void setSelection(String team){
         assert team.equals(this.team1) || team.equals(team2);
         this.selection = team;
     }
-    public void setPayout(String team, double stak){
-        if(team.equals(team1)){
-            this.payout = stak*team1price;
-        }
-        else{
-            this.payout = stak*team2price;
-        }
-    }
+
+    public double getStake() { return stake; }
+    public void setStake(double stake) { this.stake = stake; }
+
     public double getPayout(){return this.payout;}
+    public void setPayout(double payout) { this.payout = payout; }
+
     public String toString(){
-        String res = "ID: "+this.getId()+", Sport: "+this.getSport()+", Teams: "+this.getTeam1()+
+        String res = "Sport: "+this.getSport()+", Teams: "+this.getTeam1()+
                 " vs "+this.getTeam2()+", Odds: "+this.getTeam1price()+"/"+this.getTeam2price()+
                 "selected team: "+this.getSelection()+", Stake: "+this.getStake();
         String result = "";
         String spacer = "";
-        for(int i=0;i<=200-res.length();i++){
+        for(int i=0;i<=170-res.length();i++){
             spacer += " ";
         }
-        result += "ID: "+this.getId()+", Sport: "+this.getSport()+", Teams: "+this.getTeam1()+
+        result += "Sport: "+this.getSport()+", Teams: "+this.getTeam1()+
                 " vs "+this.getTeam2()+", Odds: "+this.getTeam1price()+"/"+this.getTeam2price()+
                 spacer+ "\n Selected team: "+this.getSelection()+",   Stake: "+this.getStake()
-                +",   Payout: "+this.getPayout()+" Status: "+this.getStatus();;
+                +",   Payout: "+this.getPayout()+" Status: "+this.getStatus();
+        if (this.getStatus().equals("completed")){
+            if (this.betwon) {
+                result += ",  Result: +"+this.getPayout();
+            }
+            else {
+                result += ",  Result: -"+this.getStake();
+            }
+        }
         return result;
     }
-
 }

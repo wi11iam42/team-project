@@ -2,6 +2,7 @@ package view;
 
 import entity.Sportbet;
 import entity.User;
+import use_case.SportbetInteractor;
 import view.MainMenuFrame.MainMenuFrame;
 
 import javax.swing.*;
@@ -9,7 +10,10 @@ import java.awt.*;
 
 public class BetHistoryFrame extends JFrame {
     public BetHistoryFrame(User user, JFrame MainMenu){
-        setTitle("Place a Sports Bet");
+
+        SportbetInteractor interactor = new SportbetInteractor();
+
+        setTitle("Bet History");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1920, 1080);
         setLayout(new BorderLayout());
@@ -37,6 +41,7 @@ public class BetHistoryFrame extends JFrame {
         allBetsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         allBetsList.setVisibleRowCount(-1);
         allBetsList.setEnabled(false);
+
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                 new JScrollPane(betList), new JScrollPane(allBetsList));
         splitPane.setDividerLocation(400);
@@ -54,27 +59,19 @@ public class BetHistoryFrame extends JFrame {
                 return;
             }
 
-            double team1chance = 1/selected.getTeam1price();
-            double team2chance = 1/selected.getTeam2price();
-            double simgame = Math.random();
+            // Call interactor to simulate bet
+            interactor.simulateBet(selected, user);
 
-            if(simgame < team1chance){
-                if (selected.getSelection().equals(selected.getTeam1())){
-                    user.deposit(selected.getPayout());
-                    JOptionPane.showMessageDialog(this, selected.getTeam1()+" won! Your winnings have been deposited.");
-                } else {
-                    JOptionPane.showMessageDialog(this, selected.getTeam1()+" won. Better luck next time!");
-                }
+            // Show result
+            if (selected.getBetwon()) {
+                JOptionPane.showMessageDialog(this,
+                        selected.getSelection() + " won! Your winnings have been deposited.");
             } else {
-                if (selected.getSelection().equals(selected.getTeam2())){
-                    user.deposit(selected.getPayout());
-                    JOptionPane.showMessageDialog(this, selected.getTeam2()+" won! Your winnings have been deposited.");
-                } else {
-                    JOptionPane.showMessageDialog(this, selected.getTeam2()+" won. Better luck next time!");
-                }
+                JOptionPane.showMessageDialog(this,
+                        selected.getSelection() + " lost. Better luck next time!");
             }
 
-            selected.setStatus("completed");
+            // Update UI
             model.removeElement(selected);
         });
 

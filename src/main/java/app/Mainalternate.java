@@ -1,5 +1,7 @@
-package test;
+package app;
 
+import data_access.FileUserDataAccessObject;
+import data_access.SportsAPIDataAccess;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 
@@ -22,12 +24,18 @@ import view.SignupView;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginViewTest {
+public class Mainalternate {
 
     public static void main(String[] args) {
 
-        InMemoryUserDataAccess userDAO = new InMemoryUserDataAccess();
+        System.setProperty("sun.java2d.uiScale", "1");
+
+        SportsAPIDataAccess data = new SportsAPIDataAccess();
+        data.readdata();
+
         UserFactory userFactory = new UserFactory();
+        final FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("users.csv", userFactory);
+
 
         ViewManagerModel viewManager = new ViewManagerModel();
         LoginViewModel loginVM = new LoginViewModel();
@@ -35,16 +43,16 @@ public class LoginViewTest {
         LoggedInViewModel loggedInVM = new LoggedInViewModel();
 
         LoginPresenter loginPresenter =
-                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDAO);
+                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDataAccessObject);
 
         SignupPresenter signupPresenter =
                 new SignupPresenter(viewManager, signupVM, loginVM);
 
         LoginInteractor loginInteractor =
-                new LoginInteractor(userDAO, loginPresenter);
+                new LoginInteractor(userDataAccessObject, loginPresenter);
 
         SignupInteractor signupInteractor =
-                new SignupInteractor(userDAO, signupPresenter, userFactory);
+                new SignupInteractor(userDataAccessObject, signupPresenter, userFactory);
 
         LoginController loginController =
                 new LoginController(loginInteractor);
