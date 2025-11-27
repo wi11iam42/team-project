@@ -8,7 +8,10 @@ import entity.*;
 import interface_adapter.Blackjack.BlackjackController;
 import interface_adapter.Blackjack.BlackjackPresenter;
 import interface_adapter.Blackjack.BlackjackViewModel;
+import interface_adapter.GameSelect.GameSelectViewModel;
 import use_case.*;
+import view.GameSelectView;
+import data_access.FileUserDataAccessObject;
 
 public class BlackjackView extends JFrame {
 
@@ -33,6 +36,7 @@ public class BlackjackView extends JFrame {
     private JButton hitButton;
     private JButton standButton;
     private JButton betSubmit;
+    private JButton returnButton;
 
     public BlackjackView(User user) {
         // === Build Clean Architecture Stack ===
@@ -114,7 +118,12 @@ public class BlackjackView extends JFrame {
 
             lastBet = betAmount;
             current_user.withdraw(lastBet);
+            current_user.addGamePlayed();
             walletField.setText(String.format("$%.2f", current_user.getBalance()));
+
+            // Save user data to persist gamesPlayed count
+            FileUserDataAccessObject userDAO = new FileUserDataAccessObject("users.csv", new UserFactory());
+            userDAO.save(current_user);
 
             dealerRevealed = false;
 
@@ -136,6 +145,22 @@ public class BlackjackView extends JFrame {
         leftPanel.add(Box.createVerticalStrut(10));
         leftPanel.add(betLabel);
         leftPanel.add(betPanel);
+        leftPanel.add(Box.createVerticalStrut(10));
+
+        returnButton = new JButton("Return to Game Select");
+        returnButton.addActionListener(e -> {
+            GameSelectViewModel viewModel = new GameSelectViewModel(current_user);
+            GameSelectView gameSelectView = new GameSelectView(viewModel);
+            JFrame gameSelectFrame = new JFrame("Game Select");
+            gameSelectFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            gameSelectFrame.add(gameSelectView);
+            gameSelectFrame.setMinimumSize(new Dimension(1700, 1050));
+            gameSelectFrame.setPreferredSize(new Dimension(1700, 1050));
+            gameSelectFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            gameSelectFrame.setVisible(true);
+            dispose();
+        });
+        leftPanel.add(returnButton);
 
         // ================= CENTER (TABLE) =================
         JPanel tablePanel = new JPanel(new BorderLayout(10, 10));
