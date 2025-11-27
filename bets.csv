@@ -1,1 +1,8 @@
 username,betId,sport,team1,team1price,team2,team2price,selection,stake,payout,status,betwon
+issei,bc86ba3d19479aea6af13b12f3c29f68,NBA,New Orleans Pelicans,13.000000,Oklahoma City Thunder,1.040000,Oklahoma City Thunder,1000.000000,1040.000000,Bet Placed,false
+issei,58c5d4f9449efc54b2a2ceb71ca6878b,NBA,Cleveland Cavaliers,1.110000,Indiana Pacers,7.000000,Indiana Pacers,800.000000,5600.000000,Bet Placed,false
+issei,f383ac51e8102cfb59ce70f5e1a308ff,NBA,Dallas Mavericks,1.560000,New Orleans Pelicans,2.520000,New Orleans Pelicans,77.000000,194.040000,Bet Placed,false
+lin,bc86ba3d19479aea6af13b12f3c29f68,NBA,New Orleans Pelicans,13.000000,Oklahoma City Thunder,1.040000,Oklahoma City Thunder,1000.000000,1040.000000,Bet Placed,false
+lin,3640b757990601e61f5ca4fb241d99a8,NBA,Minnesota Timberwolves,1.160000,Sacramento Kings,5.000000,Minnesota Timberwolves,1000.000000,1160.000000,Bet Placed,false
+issei,bd5ab48d88ac2df3a17c43a6d06e52ad,NBA,Houston Rockets,1.220000,Phoenix Suns,4.200000,Phoenix Suns,1.000000,4.200000,Bet Placed,false
+theo,731fa66351071a1e5cd387fd7087aa8f,NBA,Toronto Raptors,1.110000,Washington Wizards,7.400000,Toronto Raptors,1000.000000,1110.000000,Bet Placed,false

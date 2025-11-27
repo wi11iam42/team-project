@@ -40,7 +40,7 @@ public class SportsAPIDataAccess {
             e.printStackTrace();
         }
     }
-    public void readdata(){
+    public static void readdata(){
         try {
             BufferedReader br = new BufferedReader(new FileReader("odds.txt"));
             String line;
