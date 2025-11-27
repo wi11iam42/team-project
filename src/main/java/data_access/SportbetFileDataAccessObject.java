@@ -1,6 +1,8 @@
 package data_access;
 
 import entity.Sportbet;
+import entity.User;
+import entity.UserFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ public class SportbetFileDataAccessObject {
     private static final String HEADER =
             "username,betId,sport,team1,team1price,team2,team2price," +
                     "selection,stake,payout,status,betwon";
+    private static final FileUserDataAccessObject userDAO =
+            new FileUserDataAccessObject("users.csv", new UserFactory());
 
     private final File csvFile;
 
@@ -49,8 +53,8 @@ public class SportbetFileDataAccessObject {
         }
     }
 
-    public List<Sportbet> loadBetsForUser(String username) {
-        List<Sportbet> result = new ArrayList<>();
+    public ArrayList<Sportbet> loadBetsForUser(String username) {
+        ArrayList<Sportbet> result = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
             String header = reader.readLine();
@@ -66,7 +70,7 @@ public class SportbetFileDataAccessObject {
                 if (!col[0].equals(username)) {
                     continue;
                 }
-
+                User user = userDAO.get(col[0]);
                 String betId = col[1];
                 String sport = col[2];
                 String team1 = col[3];
@@ -78,6 +82,8 @@ public class SportbetFileDataAccessObject {
                         team1price, team2price, col[10]);
 
                 bet.setSelection(col[7]);
+                bet.setStatus(col[10]);
+                bet.setUser(user);
                 bet.setStake(Double.parseDouble(col[8]));
                 bet.setPayout(Double.parseDouble(col[9]));
                 bet.setBetwon(Boolean.parseBoolean(col[11]));
