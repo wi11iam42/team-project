@@ -1,42 +1,46 @@
 package view.MainMenuFrame;
 
 import app.AppBuilder;
+import data_access.FileUserDataAccessObject;
+import data_access.InMemoryUserDataAccess;
+import data_access.SportbetFileDataAccessObject;
+import data_access.UserDataAccessInterface;
+import entity.Sportbet;
 import entity.User;
+import entity.UserFactory;
 import interface_adapter.Profile.ProfileController;
 import interface_adapter.Profile.ProfilePresenter;
 import interface_adapter.Profile.ProfileViewModel;
-import interface_adapter.logout.LogoutController;
+import interface_adapter.Wallet.WalletController;
+import interface_adapter.Wallet.WalletPresenter;
+import interface_adapter.Wallet.WalletViewModel;
+import interface_adapter.Wallet.WalletState;
 import use_case.profile.ProfileInteractor;
-import data_access.InMemoryUserDataAccess;
-import data_access.UserDataAccessInterface;
 import view.BetHistoryFrame;
 import view.ProfileFrame;
 import view.SportbetFrame;
-import view.WalletFrame;
-import data_access.SportbetFileDataAccessObject;
-import entity.Sportbet;
-import java.util.List;
+import view.WalletView;
+import use_case.Wallet.WalletInteractor;
+
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class MainMenuFrame extends JFrame {
 
-//    static {
-//        System.setProperty("sun.java2d.uiScale", "1");
-//    }
+    static {
+        System.setProperty("sun.java2d.uiScale", "1");
+    }
 
     private final User user;
+    private final UserDataAccessInterface userDAO;
     private final ProfilePresenter profilePresenter;
     private final ProfileController profileController;
-    private static LogoutController logoutController;
-
-    public static void setLogoutController(LogoutController controller) {
-        logoutController = controller;
-    }
 
     public MainMenuFrame(User user) {
         this.user = user;
+        this.userDAO = new FileUserDataAccessObject("users.csv", new UserFactory());
 
         SportbetFileDataAccessObject betDAO =
                 new SportbetFileDataAccessObject("bets.csv");
@@ -51,9 +55,10 @@ public class MainMenuFrame extends JFrame {
         setPreferredSize(new Dimension(1700, 1050));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        // Profile interactor
-        UserDataAccessInterface userDAO = new InMemoryUserDataAccess();
-        userDAO.save(user);
+        if (!userDAO.existsByName(user.getUsername())) {
+            userDAO.save(user);
+        }
+
         profilePresenter = new ProfilePresenter();
         ProfileInteractor interactor = new ProfileInteractor(userDAO, profilePresenter);
         profileController = new ProfileController(interactor);
@@ -79,7 +84,7 @@ public class MainMenuFrame extends JFrame {
         c.insets = new Insets(25, 25, 25, 25);
 
         // =====================================
-        // New Size Settings
+        // New Size Settings (your requirements)
         // =====================================
         int SMALL_W = 560, SMALL_H = 350;
 
@@ -105,11 +110,10 @@ public class MainMenuFrame extends JFrame {
                 SMALL_W, SMALL_H
         );
 
-        JButton depositBtn = newButton(
+        JButton walletBtn = newButton(
                 "<html><center>" +
                         "<span style='font-size:50px;'>💰</span><br>" +
-                        "<span style='font-size:36px;'>Deposit</span><br>" +
-                        "<span style='font-size:36px;'>Withdraw</span>" +
+                        "<span style='font-size:36px;'>Wallet</span>" +
                         "</center></html>",
                 SMALL_W, SMALL_H
         );
@@ -149,21 +153,6 @@ public class MainMenuFrame extends JFrame {
                 LOGOUT_W, LOGOUT_H
         );
 
-        JPanel bottomRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        bottomRight.setOpaque(false);
-        bottomRight.add(logoutBtn);
-        root.add(bottomRight, BorderLayout.SOUTH);
-
-// --- Action listener wired to LogoutController ---
-        logoutBtn.addActionListener(e -> {
-            if (logoutController != null) {
-                logoutController.execute(); // calls LogoutInteractor
-                dispose(); // close MainMenuFrame
-            } else {
-                System.err.println("LogoutController not set!");
-            }
-        });
-
         // =====================================
         // Add Buttons to Layout
         // =====================================
@@ -182,13 +171,13 @@ public class MainMenuFrame extends JFrame {
         c.gridwidth = 1;
 
         c.gridx = 0; c.gridy = 2;
-        centerPanel.add(depositBtn, c);
+        centerPanel.add(walletBtn, c);
 
         // === logout button stays at bottom-right ===
-        JPanel bottomRight2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        bottomRight2.setOpaque(false);
-        bottomRight2.add(logoutBtn);
-        root.add(bottomRight2, BorderLayout.SOUTH);
+        JPanel bottomRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomRight.setOpaque(false);
+        bottomRight.add(logoutBtn);
+        root.add(bottomRight, BorderLayout.SOUTH);
 
         // =====================================
         // Button actions
@@ -218,10 +207,46 @@ public class MainMenuFrame extends JFrame {
             setVisible(false);
         });
 
-        depositBtn.addActionListener(e -> {
-            new WalletFrame(user, this);
-            setVisible(false);
+        walletBtn.addActionListener(e -> {
+
+            WalletViewModel walletVM = new WalletViewModel();
+            WalletPresenter walletPresenter = new WalletPresenter(walletVM);
+            WalletInteractor walletInteractor = new WalletInteractor(userDAO, walletPresenter);
+            WalletController walletController = new WalletController(walletInteractor, walletVM);
+
+            WalletState state = walletVM.getState();
+            state.setUsername(user.getUsername());
+
+            User persisted = userDAO.get(user.getUsername());
+            if (persisted != null) {
+                state.setBalance(persisted.getBalance());
+            } else {
+                state.setBalance(user.getBalance());
+            }
+            walletVM.firePropertyChange();
+
+            JFrame walletFrame = new JFrame("Wallet");
+            walletFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            walletFrame.setSize(600, 400);
+            walletFrame.setLocationRelativeTo(this);
+
+            WalletView walletView = new WalletView(walletVM, walletController);
+            walletFrame.setContentPane(walletView);
+
+            this.setVisible(false);
+            walletView.getBackButton().addActionListener(ev -> {
+                        walletFrame.dispose();
+                        User updated = userDAO.get(user.getUsername());
+                        if (updated != null) {
+                            user.setBalance(updated.getBalance());
+                        }
+                        this.setVisible(true);
+                    });
+
+            walletFrame.setVisible(true);
         });
+
+
 
         logoutBtn.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Logged Out!");
