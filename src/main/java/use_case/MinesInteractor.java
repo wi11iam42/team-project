@@ -13,6 +13,7 @@ public class MinesInteractor {
 
     public void revealTile(int x, int y) {
         boolean safe = game.reveal(x, y);
-        presenter.presentBoard(game, safe);
+        // pass coords so the presenter/UI can update only that tile
+        presenter.presentBoard(game, safe, x, y);
     }
 }
