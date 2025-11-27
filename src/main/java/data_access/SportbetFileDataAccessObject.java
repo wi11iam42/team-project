@@ -52,6 +52,89 @@ public class SportbetFileDataAccessObject {
             throw new RuntimeException(e);
         }
     }
+    public synchronized void replaceByUsernameAndId(String username, String betId, Sportbet newBet) {
+
+        List<String> output = new ArrayList<>();
+        boolean replaced = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+
+            // preserve header
+            String header = reader.readLine();
+            output.add(header);
+
+            String row;
+            while ((row = reader.readLine()) != null) {
+
+                String[] col = row.split(",");
+
+                // malformed row → keep it
+                if (col.length < 12) {
+                    output.add(row);
+                    continue;
+                }
+
+                // col[0] = username, col[1] = betId
+                if (col[0].equals(username) && col[1].equals(betId)) {
+
+                    String replacement = String.format(
+                            "%s,%s,%s,%s,%f,%s,%f,%s,%f,%f,%s,%b",
+                            newBet.getUser().getUsername(),
+                            newBet.getId(),
+                            newBet.getSport(),
+                            newBet.getTeam1(),
+                            newBet.getTeam1price(),
+                            newBet.getTeam2(),
+                            newBet.getTeam2price(),
+                            newBet.getSelection(),
+                            newBet.getStake(),
+                            newBet.getPayout(),
+                            newBet.getStatus(),
+                            newBet.getBetwon()
+                    );
+
+                    output.add(replacement);
+                    replaced = true;
+
+                } else {
+                    output.add(row);
+                }
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // If no existing row found, append new bet
+        if (!replaced) {
+            output.add(String.format(
+                    "%s,%s,%s,%s,%f,%s,%f,%s,%f,%f,%s,%b",
+                    newBet.getUser().getUsername(),
+                    newBet.getId(),
+                    newBet.getSport(),
+                    newBet.getTeam1(),
+                    newBet.getTeam1price(),
+                    newBet.getTeam2(),
+                    newBet.getTeam2price(),
+                    newBet.getSelection(),
+                    newBet.getStake(),
+                    newBet.getPayout(),
+                    newBet.getStatus(),
+                    newBet.getBetwon()
+            ));
+        }
+
+        // Write all lines back to CSV
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
+            for (String line : output) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public ArrayList<Sportbet> loadBetsForUser(String username) {
         ArrayList<Sportbet> result = new ArrayList<>();
