@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="add a return button for BlackjackView">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/WalletFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bets.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/WalletFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WalletFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/WalletView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WalletView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
@@ -37,7 +35,6 @@
   &quot;keyToString&quot;: {
     &quot;Application.LoginViewTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainAlreadyLoggedIn.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
 }</component>
@@ -57,7 +54,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
