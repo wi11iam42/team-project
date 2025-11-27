@@ -85,6 +85,10 @@ public class SportbetFrame extends JFrame {
         });
 
         backButton.addActionListener(e -> {
+            // Save user data before returning to ensure database is synchronized
+            data_access.FileUserDataAccessObject userDAO =
+                    new data_access.FileUserDataAccessObject("users.csv", new entity.UserFactory());
+            userDAO.save(user);
             new MainMenuFrame(user);
             dispose();
         });

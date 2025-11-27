@@ -184,6 +184,8 @@ public class MainMenuFrame extends JFrame {
         // =====================================
 
         profileBtn.addActionListener(e -> {
+            // Save user data before loading profile to ensure latest information is displayed
+            userDAO.save(user);
             profileController.loadProfile(user.getUsername());
             ProfileViewModel vm = profilePresenter.getViewModel();
             new ProfileFrame(vm, this);
@@ -223,7 +225,6 @@ public class MainMenuFrame extends JFrame {
             } else {
                 state.setBalance(user.getBalance());
             }
-            walletVM.firePropertyChange();
 
             JFrame walletFrame = new JFrame("Wallet");
             walletFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -233,15 +234,17 @@ public class MainMenuFrame extends JFrame {
             WalletView walletView = new WalletView(walletVM, walletController);
             walletFrame.setContentPane(walletView);
 
+            walletVM.firePropertyChange();
+
             this.setVisible(false);
             walletView.getBackButton().addActionListener(ev -> {
-                        walletFrame.dispose();
-                        User updated = userDAO.get(user.getUsername());
-                        if (updated != null) {
-                            user.setBalance(updated.getBalance());
-                        }
-                        this.setVisible(true);
-                    });
+                walletFrame.dispose();
+                User updated = userDAO.get(user.getUsername());
+                if (updated != null) {
+                    user.setBalance(updated.getBalance());
+                }
+                this.setVisible(true);
+            });
 
             walletFrame.setVisible(true);
         });

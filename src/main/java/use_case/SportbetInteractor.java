@@ -43,6 +43,9 @@ public class SportbetInteractor {
 
         bet.setStatus("completed");
 
-    betDAO.saveBet(user.getUsername(), bet);
+        // Increment games played count for the user
+        user.addGamePlayed();
+
+        betDAO.saveBet(user.getUsername(), bet);
     }
 }
