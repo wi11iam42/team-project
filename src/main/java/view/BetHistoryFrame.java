@@ -12,6 +12,8 @@ public class BetHistoryFrame extends JFrame {
     public BetHistoryFrame(User user, JFrame MainMenu){
 
         SportbetInteractor interactor = new SportbetInteractor();
+        data_access.FileUserDataAccessObject userDAO =
+                new data_access.FileUserDataAccessObject("users.csv", new entity.UserFactory());
 
         setTitle("Bet History");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -23,8 +25,8 @@ public class BetHistoryFrame extends JFrame {
 
         // Top list (active bets)
         DefaultListModel<Sportbet> model = new DefaultListModel<>();
-        for (Sportbet b : user.getSbs()) {
-            if (!b.getStatus().equals("completed")) { // only active bets
+        for (Sportbet b : interactor.getUserBets(user.getUsername())) {
+            if (!b.getStatus().equalsIgnoreCase("completed")) { // only active bets
                 model.addElement(b);
             }
         }
@@ -34,7 +36,7 @@ public class BetHistoryFrame extends JFrame {
 
         // Bottom list (all bets)
         DefaultListModel<Sportbet> allModel = new DefaultListModel<>();
-        for (Sportbet b : user.getSbs()) {
+        for (Sportbet b : interactor.getUserBets(user.getUsername())) {
             allModel.addElement(b);
         }
         JList<Sportbet> allBetsList = new JList<>(allModel);
@@ -48,6 +50,8 @@ public class BetHistoryFrame extends JFrame {
         add(splitPane, BorderLayout.CENTER);
 
         backButton.addActionListener(e -> {
+            // Save user data before returning to ensure database is synchronized
+            userDAO.save(user);
             new MainMenuFrame(user);
             dispose();
         });
@@ -62,6 +66,9 @@ public class BetHistoryFrame extends JFrame {
             // Call interactor to simulate bet
             interactor.simulateBet(selected, user);
 
+            // Save user data to persist gamesPlayed count and balance changes
+            userDAO.save(user);
+            interactor.betDAO.replaceByUsernameAndId(user.getUsername(), selected.getId(), selected);
             // Show result
             if (selected.getBetwon()) {
                 JOptionPane.showMessageDialog(this,
@@ -73,6 +80,10 @@ public class BetHistoryFrame extends JFrame {
 
             // Update UI
             model.removeElement(selected);
+            allModel.removeAllElements();
+            for (Sportbet b : interactor.getUserBets(user.getUsername())) {
+                allModel.addElement(b);
+            }
         });
 
         JPanel bottomPanel = new JPanel(new FlowLayout());

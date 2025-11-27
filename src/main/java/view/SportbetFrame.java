@@ -1,5 +1,6 @@
 package view;
 
+import data_access.SportbetFileDataAccessObject;
 import data_access.SportsAPIDataAccess;
 import entity.Sportbet;
 import entity.User;
@@ -8,10 +9,13 @@ import view.MainMenuFrame.MainMenuFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SportbetFrame extends JFrame {
-    public SportbetFrame(User user, JFrame mainMenu){
+    public SportbetFrame(User user, JFrame mainMenu) {
 
         SportbetInteractor interactor = new SportbetInteractor();
 
@@ -20,9 +24,44 @@ public class SportbetFrame extends JFrame {
         setSize(1920, 1080);
         setLayout(new BorderLayout());
 
+        // ✅ Load user bets ONCE through interactor
+        ArrayList<Sportbet> userBets = interactor.getUserBets(user.getUsername());
+
+        // ✅ Map bets by ID for fast lookup
+        Map<String, Sportbet> userBetMap = new HashMap<>();
+        for (Sportbet bet : userBets) {
+            userBetMap.put(bet.getId(), bet);
+        }
+
+        // ✅ Build DISPLAY list (NEVER MODIFY API LIST)
+        ArrayList<Sportbet> displayList = new ArrayList<>();
+
+        for (Sportbet apiBet : SportsAPIDataAccess.allbets) {
+
+            Sportbet displayBet = new Sportbet(
+                    apiBet.getId(),
+                    apiBet.getSport(),
+                    apiBet.getTeam1(),
+                    apiBet.getTeam2(),
+                    apiBet.getTeam1price(),
+                    apiBet.getTeam2price(),
+                    "No bets"
+            );
+
+            Sportbet userBet = userBetMap.get(apiBet.getId());
+
+            if (userBet != null) {
+                displayBet = userBet;
+            }
+
+            displayList.add(displayBet);
+        }
+
+        // ✅ Create list using displayList
         JList<Sportbet> betsList = new JList<>(
-                SportsAPIDataAccess.allbets.toArray(new Sportbet[0])
+                displayList.toArray(new Sportbet[0])
         );
+
         JScrollPane scrollPane = new JScrollPane(betsList);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -42,6 +81,7 @@ public class SportbetFrame extends JFrame {
             hasTeam.set(true);
             pickedTeam1.set(true);
             s.setSelection(s.getTeam1());
+            betsList.repaint();
         });
 
         pickteam2.addActionListener(e -> {
@@ -50,28 +90,34 @@ public class SportbetFrame extends JFrame {
             hasTeam.set(true);
             pickedTeam1.set(false);
             s.setSelection(s.getTeam2());
+            betsList.repaint();
         });
 
         placeBetButton.addActionListener(e -> {
             Sportbet s = betsList.getSelectedValue();
             if (s == null || !hasTeam.get()) {
-                JOptionPane.showMessageDialog(this, "Select a bet and team first.");
+                JOptionPane.showMessageDialog(this,"Select a bet and team first.");
+                return;
+            }
+
+            if (!s.getStatus().equals("No bets")) {
+                JOptionPane.showMessageDialog(this,"You already bet on this game!");
                 return;
             }
 
             int amount;
-            try { amount = Integer.parseInt(amountField.getText()); }
-            catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Enter a valid integer.");
+            try {
+                amount = Integer.parseInt(amountField.getText());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Enter a valid integer.");
                 return;
             }
 
             if (!user.checkwithdraw(amount)) {
-                JOptionPane.showMessageDialog(this, "Insufficient balance.");
+                JOptionPane.showMessageDialog(this,"Insufficient balance.");
                 return;
             }
 
-            // CLEAN ARCHITECTURE: interactor handles everything
             interactor.placeBet(
                     s,
                     user,
@@ -79,11 +125,16 @@ public class SportbetFrame extends JFrame {
                     pickedTeam1.get() ? s.getTeam1() : s.getTeam2()
             );
 
-            JOptionPane.showMessageDialog(this,
-                    "Bet placed:\n" + s.toString());
+            JOptionPane.showMessageDialog(this,"Bet placed:\n" + s);
+
+            betsList.repaint();
         });
 
         backButton.addActionListener(e -> {
+            // Save user data before returning to ensure database is synchronized
+            data_access.FileUserDataAccessObject userDAO =
+                    new data_access.FileUserDataAccessObject("users.csv", new entity.UserFactory());
+            userDAO.save(user);
             new MainMenuFrame(user);
             dispose();
         });

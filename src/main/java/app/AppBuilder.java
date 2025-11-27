@@ -1,5 +1,6 @@
 package app;
 
+import entity.User;
 import interface_adapter.GameSelect.GameSelectController;
 import interface_adapter.GameSelect.GameSelectState;
 import interface_adapter.GameSelect.GameSelectViewModel;
@@ -26,8 +27,8 @@ public class AppBuilder {
         cardPanel.setLayout(cardLayout);
     }
 
-    public AppBuilder addGameSelectView() {
-        gameSelectViewModel = new GameSelectViewModel();
+    public AppBuilder addGameSelectView(User user) {
+        gameSelectViewModel = new GameSelectViewModel(user);
         gameSelectView = new GameSelectView(gameSelectViewModel);
         cardPanel.add(gameSelectView, gameSelectView.getViewName());
         return this;

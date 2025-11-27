@@ -2,6 +2,8 @@ package entity;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.round;
+
 public class User {
     private final String username;
     private double balance;
@@ -31,6 +33,9 @@ public class User {
 
     public void deposit(double amount) {
         balance += amount;
+        balance *= 100;
+        balance = Math.round(balance);
+        balance /= 100;
     }
 
     public boolean checkwithdraw(double amount) {
@@ -40,6 +45,9 @@ public class User {
     public void withdraw(double amount) {
         if (checkwithdraw(amount)) {
         balance -= amount;
+        balance *= 100;
+        balance = Math.round(balance);
+        balance /= 100;
     }}
 
     public void addBet(Sportbet sb, double betamount) {
@@ -57,5 +65,9 @@ public class User {
 
     public void addGamePlayed() {
         gamesPlayed++;
+    }
+
+    public void incrementBetCount() {
+        totalBets++;
     }
 }
