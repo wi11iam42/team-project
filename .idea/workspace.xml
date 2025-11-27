@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="slightly better game select ui, still need to make buttons bigger">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameSelectView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameSelectView.java" afterDir="false" />
+    <list default="true" id="5ed81d41-5b49-49a0-8bf4-1b851926546e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/BlackjackView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BlackjackView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -29,181 +22,14 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;wi11iam42&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/wi11iam42/team-project.git",
-    "accountId": "116a6b68-e6d8-4194-8361-957d5c2f01af"
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Mainalternate.executor": "Run",
+    "git-widget-placeholder": "nikita",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="33q2kto1Th5mns7xNTEg7gWS9Fb" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AlternativeMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MinesView.executor&quot;: &quot;Run&quot;,
-    &quot;Application.blackjackview.executor&quot;: &quot;Run&quot;,
-    &quot;Application.minesview.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;betteruiattempt2&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
-  }
-}</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="team-project" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="team-project" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="e8f37d7d-e497-4269-85ef-a78d9eb08446" name="Changes" comment="" />
-      <created>1760030428116</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1760030428116</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Team contract final">
-      <option name="closed" value="true" />
-      <created>1760031269450</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1760031269450</updated>
-    </task>
-    <task id="LOCAL-00002" summary="n">
-      <option name="closed" value="true" />
-      <created>1760031721323</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1760031721323</updated>
-    </task>
-    <task id="LOCAL-00003" summary="packages for CA">
-      <option name="closed" value="true" />
-      <created>1762878772356</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1762878772356</updated>
-    </task>
-    <task id="LOCAL-00004" summary="packages for CA">
-      <option name="closed" value="true" />
-      <created>1762879146823</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1762879146823</updated>
-    </task>
-    <task id="LOCAL-00005" summary="packages for CA">
-      <option name="closed" value="true" />
-      <created>1762879339066</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1762879339066</updated>
-    </task>
-    <task id="LOCAL-00006" summary="packages for CA">
-      <option name="closed" value="true" />
-      <created>1762879433259</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1762879433259</updated>
-    </task>
-    <task id="LOCAL-00007" summary="commit3_bill">
-      <option name="closed" value="true" />
-      <created>1762883200487</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1762883200487</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Change The home page.">
-      <option name="closed" value="true" />
-      <created>1763486922920</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1763486922920</updated>
-    </task>
-    <task id="LOCAL-00009" summary="organization and renaming">
-      <option name="closed" value="true" />
-      <created>1763873602467</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1763873602467</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Polish the home page and adjust the layout">
-      <option name="closed" value="true" />
-      <created>1763913412399</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1763913412399</updated>
-    </task>
-    <task id="LOCAL-00011" summary="slightly better game select ui, still need to make buttons bigger">
-      <option name="closed" value="true" />
-      <created>1764092514211</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1764092514211</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Team contract final" />
-    <MESSAGE value="n" />
-    <MESSAGE value="packages for CA" />
-    <MESSAGE value="mines UI added" />
-    <MESSAGE value="commit3_bill" />
-    <MESSAGE value="Change The home page." />
-    <MESSAGE value="organization and renaming" />
-    <MESSAGE value="Polish the home page and adjust the layout" />
-    <MESSAGE value="slightly better game select ui, still need to make buttons bigger" />
-    <option name="LAST_COMMIT_MESSAGE" value="slightly better game select ui, still need to make buttons bigger" />
   </component>
 </project>

@@ -21,6 +21,7 @@ public class BlackjackView extends JFrame {
     private JLabel walletLabel;
     private JTextField walletField;
     private JTextField betField;
+    private User current_user;
 
 
     private JLabel[][] cardSlots = new JLabel[2][5];
@@ -34,6 +35,7 @@ public class BlackjackView extends JFrame {
         BlackjackGame game = new BlackjackGame(100);
         BlackjackInteractor interactor = new BlackjackInteractor(game, presenter);
         controller = new BlackjackController(interactor);
+        current_user=user;
 
 
         createAndShowGUI();
@@ -52,9 +54,10 @@ public class BlackjackView extends JFrame {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        String wallet_text = String.valueOf(current_user.getBalance());
 
         walletLabel = new JLabel("Wallet:");
-        walletField = new JTextField("$100.00");
+        walletField = new JTextField("$"+wallet_text);
         walletField.setEditable(false);
 
 
