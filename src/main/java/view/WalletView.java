@@ -1,8 +1,8 @@
 package view;
 
 import interface_adapter.Wallet.WalletController;
-import interface_adapter.Wallet.WalletViewModel;
 import interface_adapter.Wallet.WalletState;
+import interface_adapter.Wallet.WalletViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,12 +14,12 @@ public class WalletView extends JPanel implements PropertyChangeListener {
     private final WalletViewModel viewModel;
     private final WalletController controller;
 
-    private final JLabel balanceLabel = new JLabel("Balance: $0", SwingConstants.CENTER);
-    private final JTextArea historyArea = new JTextArea(10, 30);
-    private final JTextField amountField = new JTextField(10);
-    private final JButton depositButton = new JButton("Deposit");
-    private final JButton withdrawButton = new JButton("Withdraw");
-    private final JButton backButton = new JButton("Back");
+    private final JLabel balanceLabel = new JLabel("", SwingConstants.CENTER);
+    private final JTextArea historyArea = new JTextArea();
+    private final JTextField amountField = new JTextField(15);
+    private final JButton depositButton = new JButton("💵 DEPOSIT");
+    private final JButton withdrawButton = new JButton("💸 WITHDRAW");
+    private final JButton backButton = new JButton("⬅ BACK");
 
     public WalletView(WalletViewModel viewModel, WalletController controller) {
         this.viewModel = viewModel;
@@ -28,49 +28,90 @@ public class WalletView extends JPanel implements PropertyChangeListener {
         this.viewModel.addPropertyChangeListener(this);
 
         setLayout(new BorderLayout());
-        setName("wallet");
+        setBackground(new Color(20, 20, 20));
 
-        setupTopPanel();
-        setupCenterPanel();
-        setupBottomPanel();
-
-        historyArea.setEditable(false);
+        setupTop();
+        setupCenter();
+        setupBottom();
     }
 
-    private void setupTopPanel() {
-        balanceLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        add(balanceLabel, BorderLayout.NORTH);
+    private void setupTop() {
+        JPanel top = new JPanel(new BorderLayout());
+        top.setBackground(new Color(0, 0, 0, 180));
+        top.setBorder(BorderFactory.createEmptyBorder(40, 0, 40, 0));
+
+        balanceLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 80));
+        balanceLabel.setForeground(new Color(255, 215, 0));
+
+        top.add(balanceLabel, BorderLayout.CENTER);
+        add(top, BorderLayout.NORTH);
     }
 
-    private void setupCenterPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+    private void setupCenter() {
+        JPanel center = new JPanel();
+        center.setOpaque(false);
+        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
 
-        JLabel amountText = new JLabel("Amount:");
-        amountText.setFont(new Font("Arial", Font.PLAIN, 18));
+        JLabel amountLabel = new JLabel("💰 Amount:");
+        amountLabel.setFont(new Font("Bahnschrift", Font.BOLD, 55));
+        amountLabel.setForeground(new Color(255, 215, 0));
 
-        depositButton.addActionListener(e ->
-                controller.executeDeposit(amountField.getText())
-        );
-        withdrawButton.addActionListener(e ->
-                controller.executeWithdraw(amountField.getText())
-        );
+        amountField.setFont(new Font("Bahnschrift", Font.PLAIN, 50));
+        amountField.setHorizontalAlignment(JTextField.CENTER);
+        amountField.setMaximumSize(new Dimension(600, 80));
+        amountField.setPreferredSize(new Dimension(600, 80));
 
-        panel.add(amountText);
-        panel.add(amountField);
-        panel.add(depositButton);
-        panel.add(withdrawButton);
+        JPanel amountRow = new JPanel();
+        amountRow.setOpaque(false);
+        amountRow.add(amountLabel);
+        amountRow.add(amountField);
 
-        add(panel, BorderLayout.CENTER);
+        depositButton.setPreferredSize(new Dimension(350, 100));
+        withdrawButton.setPreferredSize(new Dimension(350, 100));
+
+        depositButton.addActionListener(e -> controller.executeDeposit(amountField.getText()));
+        withdrawButton.addActionListener(e -> controller.executeWithdraw(amountField.getText()));
+
+        JPanel buttonRow = new JPanel();
+        buttonRow.setOpaque(false);
+        buttonRow.add(depositButton);
+        buttonRow.add(Box.createHorizontalStrut(40));
+        buttonRow.add(withdrawButton);
+
+        center.add(Box.createVerticalStrut(60));
+        center.add(amountRow);
+        center.add(Box.createVerticalStrut(60));
+        center.add(buttonRow);
+
+        add(center, BorderLayout.CENTER);
     }
 
-    private void setupBottomPanel() {
+    private void setupBottom() {
         JPanel bottom = new JPanel(new BorderLayout());
+        bottom.setOpaque(false);
+
+        historyArea.setFont(new Font("Bahnschrift", Font.PLAIN, 30));
+        historyArea.setForeground(new Color(255, 215, 0));
+        historyArea.setBackground(new Color(35, 35, 35));
+        historyArea.setEditable(false);
 
         JScrollPane scrollPane = new JScrollPane(historyArea);
-        bottom.add(scrollPane, BorderLayout.CENTER);
+        scrollPane.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(new Color(255, 215, 0), 5),
+                "Transaction History",
+                0, 0,
+                new Font("Bahnschrift", Font.BOLD, 40),
+                new Color(255, 215, 0)
+        ));
 
-        bottom.add(backButton, BorderLayout.SOUTH);
+        JPanel backPanel = new JPanel();
+        backPanel.setOpaque(false);
+
+        backButton.setPreferredSize(new Dimension(350, 100));
+        backPanel.add(backButton);
+
+        bottom.add(scrollPane, BorderLayout.CENTER);
+        bottom.add(backPanel, BorderLayout.SOUTH);
 
         add(bottom, BorderLayout.SOUTH);
     }
@@ -82,15 +123,8 @@ public class WalletView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         WalletState state = viewModel.getState();
-
-        balanceLabel.setText("Balance: " + state.getBalance());
-
+        balanceLabel.setText("💎 Balance: $" + state.getBalance());
         historyArea.setText(state.getHistoryText());
-
         amountField.setText("");
-
-        if (!state.getError().isEmpty()) {
-            JOptionPane.showMessageDialog(this, state.getError(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
 }
