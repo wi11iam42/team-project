@@ -197,7 +197,7 @@ public class MainMenuFrame extends JFrame {
 
         gameSelectBtn.addActionListener(e -> {
             AppBuilder builder = new AppBuilder();
-            JFrame app = builder.addGameSelectView().build();
+            JFrame app = builder.addGameSelectView(user).build();
             app.setVisible(true);
             dispose();
         });
