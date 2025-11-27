@@ -223,7 +223,6 @@ public class MainMenuFrame extends JFrame {
             } else {
                 state.setBalance(user.getBalance());
             }
-            walletVM.firePropertyChange();
 
             JFrame walletFrame = new JFrame("Wallet");
             walletFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -232,6 +231,8 @@ public class MainMenuFrame extends JFrame {
 
             WalletView walletView = new WalletView(walletVM, walletController);
             walletFrame.setContentPane(walletView);
+
+            walletVM.firePropertyChange();
 
             this.setVisible(false);
             walletView.getBackButton().addActionListener(ev -> {
