@@ -1,14 +1,13 @@
 package use_case.profile;
 
 import entity.User;
-import data_access.UserDataAccessInterface;
 
 public class ProfileInteractor implements ProfileInputBoundary {
 
-    private final UserDataAccessInterface userDAO;
+    private final ProfileUserDataAccessInterface userDAO;
     private final ProfileOutputBoundary presenter;
 
-    public ProfileInteractor(UserDataAccessInterface userDAO,
+    public ProfileInteractor(ProfileUserDataAccessInterface userDAO,
                              ProfileOutputBoundary presenter) {
         this.userDAO = userDAO;
         this.presenter = presenter;
