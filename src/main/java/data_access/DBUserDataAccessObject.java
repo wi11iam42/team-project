@@ -8,6 +8,7 @@ import org.json.JSONObject;
 // import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 // import use_case.logout.LogoutUserDataAccessInterface;
+import use_case.profile.ProfileUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.IOException;
@@ -15,7 +16,8 @@ import java.io.IOException;
 // Delete if we don't implement this.
 
 public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
-                                               LoginUserDataAccessInterface{
+        LoginUserDataAccessInterface,
+        ProfileUserDataAccessInterface{
     // Add back change password and logout
     private static final int SUCCESS_CODE = 200;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";

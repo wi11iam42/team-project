@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="commit for pull">
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/BlackjackView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BlackjackView.java" afterDir="false" />
+    <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileUserDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DBUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,12 +35,46 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "billchenziang33"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wi11iam42/team-project.git&quot;,
+    &quot;accountId&quot;: &quot;654b9790-94d7-43c5-8987-3a9c93074222&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;wi11iam42&quot;,
+    &quot;repository&quot;: &quot;team-project&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="365d9700DELrjBc8ePzm1Sw1TiO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.LoginViewTest.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainAlreadyLoggedIn.executor": "Run",
-    "git-widget-placeholder": "bill"
+    "JUnit.ProfileInputDataTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "bill",
+    "kotlin-language-version-configured": "true"
   }
 }]]></component>
   <component name="RunManager">
@@ -55,6 +97,13 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="change the basic structure of profile">
@@ -97,7 +146,22 @@
       <option name="project" value="LOCAL" />
       <updated>1764280464098</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile.">
+      <option name="closed" value="true" />
+      <created>1764280904522</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1764280904522</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
+      <created>1764300216456</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764300216456</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -106,6 +170,7 @@
     <MESSAGE value="add a return button for BlackjackView" />
     <MESSAGE value="1" />
     <MESSAGE value="commit for pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit for pull" />
+    <MESSAGE value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
+    <option name="LAST_COMMIT_MESSAGE" value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
   </component>
 </project>

@@ -15,6 +15,7 @@ import interface_adapter.Wallet.WalletPresenter;
 import interface_adapter.Wallet.WalletState;
 import interface_adapter.Wallet.WalletViewModel;
 import use_case.profile.ProfileInteractor;
+import use_case.profile.ProfileUserDataAccessInterface;
 import view.BetHistoryFrame;
 import view.ProfileFrame;
 import view.SportbetFrame;
@@ -54,7 +55,7 @@ public class MainMenuFrame extends JFrame {
         }
 
         profilePresenter = new ProfilePresenter();
-        ProfileInteractor interactor = new ProfileInteractor(userDAO, profilePresenter);
+        ProfileInteractor interactor = new ProfileInteractor((ProfileUserDataAccessInterface) userDAO, profilePresenter);
         profileController = new ProfileController(interactor);
 
         String bgPath = getClass().getResource("/Image_1-6.jpeg").getPath();

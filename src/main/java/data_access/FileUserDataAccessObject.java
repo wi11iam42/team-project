@@ -3,8 +3,8 @@ package data_access;
 import entity.User;
 import entity.UserFactory;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.profile.ProfileUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
-import use_case.logout.LogoutUserDataAccessInterface;
 
 import java.io.*;
 import java.util.HashMap;
@@ -13,8 +13,9 @@ import java.util.Map;
 
 
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
-                                                 LoginUserDataAccessInterface,
-                                                 UserDataAccessInterface, LogoutUserDataAccessInterface {
+        LoginUserDataAccessInterface,
+        ProfileUserDataAccessInterface,
+        UserDataAccessInterface{
 // Add back in change password and logout?
 
     private static final String HEADER = "username,password,balance,totalBets,gamesPlayed";

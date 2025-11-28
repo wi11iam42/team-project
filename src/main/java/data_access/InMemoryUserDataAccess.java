@@ -1,10 +1,13 @@
 package data_access;
 
 import entity.User;
+import use_case.profile.ProfileUserDataAccessInterface;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccess implements UserDataAccessInterface {
+public class InMemoryUserDataAccess implements UserDataAccessInterface,
+        ProfileUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
 
