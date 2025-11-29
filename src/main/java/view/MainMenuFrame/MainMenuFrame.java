@@ -14,6 +14,7 @@ import interface_adapter.Wallet.WalletController;
 import interface_adapter.Wallet.WalletPresenter;
 import interface_adapter.Wallet.WalletState;
 import interface_adapter.Wallet.WalletViewModel;
+import interface_adapter.logout.LogoutController;
 import use_case.profile.ProfileInteractor;
 import use_case.profile.ProfileUserDataAccessInterface;
 import view.BetHistoryFrame;
@@ -32,6 +33,12 @@ public class MainMenuFrame extends JFrame {
     private final UserDataAccessInterface userDAO;
     private final ProfilePresenter profilePresenter;
     private final ProfileController profileController;
+    private static LogoutController logoutController;
+
+    public static void setLogoutController(LogoutController controller) {
+        logoutController = controller;
+    }
+
 
     public MainMenuFrame(User user) {
         this.user = user;
@@ -192,8 +199,8 @@ public class MainMenuFrame extends JFrame {
         });
 
         logoutBtn.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Logged Out!");
-            dispose();
+           logoutController.execute();
+           dispose();
         });
 
         pack();
