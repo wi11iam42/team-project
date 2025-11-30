@@ -4,6 +4,7 @@ import interface_adapter.login.LoginState;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import view.MainMenuFrame.BackgroundPanel;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -15,7 +16,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 
-public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
+public class SignupView extends BackgroundPanel implements ActionListener, PropertyChangeListener {
     private final String viewName = "sign up";
 
     private final SignupViewModel signupViewModel;
@@ -35,20 +36,46 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         final JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        final LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
-        final LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
-        final LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
+        ImageIcon image1 = new ImageIcon(GameSelectView.class.getResource("/WideLogo.png"));
+        Image scaled = image1.getImage().getScaledInstance(-1, 300, Image.SCALE_SMOOTH);
+        image1 = new ImageIcon(scaled);
+        final JLabel image1label = new JLabel(image1);
+        image1label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        final JPanel buttons = new JPanel();
-        toLogin = new JButton(SignupViewModel.TO_LOGIN_BUTTON_LABEL);
-        buttons.add(toLogin);
+        final JLabel usernameText = new JLabel("Username:");
+        usernameText.setFont(new Font("Arial", Font.PLAIN, 36));
+        usernameText.setForeground(new Color(255,0,255));
+        usernameInputField.setFont(new Font("Arial", Font.PLAIN, 36));
+        final LabelTextPanel usernameInfo = new LabelTextPanel(usernameText, usernameInputField);
+        usernameInfo.setMaximumSize(new Dimension(20000,100));
+        usernameInfo.setOpaque(false);
+
+        final JLabel passwordText = new JLabel("Password:");
+        passwordText.setFont(new Font("Arial", Font.PLAIN, 36));
+        passwordText.setForeground(new Color(255,0,255));
+        passwordInputField.setFont(new Font("Arial", Font.PLAIN, 36));
+        final LabelTextPanel passwordInfo = new LabelTextPanel(passwordText, passwordInputField);
+        passwordInfo.setMaximumSize(new Dimension(20000,100));
+        passwordInfo.setOpaque(false);
+
+        final JLabel repeatPasswordText = new JLabel("Confirm Password:");
+        repeatPasswordText.setFont(new Font("Arial", Font.PLAIN, 36));
+        repeatPasswordText.setForeground(new Color(255,0,255));
+        repeatPasswordInputField.setFont(new Font("Arial", Font.PLAIN, 36));
+        final LabelTextPanel repeatPasswordInfo = new LabelTextPanel(repeatPasswordText, repeatPasswordInputField);
+        repeatPasswordInfo.setMaximumSize(new Dimension(20000,100));
+        repeatPasswordInfo.setOpaque(false);
+
         signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
-        buttons.add(signUp);
+        signUp.setFont(new Font("Arial", Font.PLAIN,48));
+        signUp.setAlignmentX(Component.CENTER_ALIGNMENT);
+        toLogin = new JButton(SignupViewModel.TO_LOGIN_BUTTON_LABEL);
+        toLogin.setFont(new Font("Arial", Font.PLAIN,21));
+        toLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+        cancel.setFont(new Font("Arial", Font.PLAIN,21));
+        cancel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cancel.setBackground(new Color(255,0,0));
 
         signUp.addActionListener(
                 new ActionListener() {
@@ -98,10 +125,17 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
+        this.add(Box.createRigidArea(new Dimension(0, 25)));
+        this.add(image1label);
+        this.add(Box.createRigidArea(new Dimension(0, 25)));
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
-        this.add(buttons);
+        this.add(signUp);
+        this.add(Box.createRigidArea(new Dimension(0, 25)));
+        this.add(cancel);
+        this.add(Box.createRigidArea(new Dimension(0, 25)));
+        this.add(toLogin);
     }
 
     private void addUsernameListener() {
