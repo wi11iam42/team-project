@@ -130,7 +130,7 @@ public class GameSelectTest {
     }
 
     @Test
-    void testPresenter() throws Exception {
+    void testPresenter() {
         GameSelectState theState = presenter.getViewModel().getState();
         assertSame(state.getGame(), theState.getGame(), "Expected games to match");
         assertEquals(state.getStakes(), theState.getStakes(), "Expected stakes to match");
@@ -138,7 +138,7 @@ public class GameSelectTest {
     }
 
     @Test
-    void testInteractor() throws Exception {
+    void testInteractor() {
         GameSelectOutputBoundary thePresenter = interactor.getPresenter();
         User theUser = interactor.getUser();
         assertSame(thePresenter, presenter, "Expected presenters to match");
