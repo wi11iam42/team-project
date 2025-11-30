@@ -1,12 +1,17 @@
 package use_case;
 
+import data_access.FileUserDataAccessObject;
 import data_access.SportbetFileDataAccessObject;
 import entity.Sportbet;
 import entity.User;
+import entity.UserFactory;
+
+import java.util.ArrayList;
 
 public class SportbetInteractor {
-    private final SportbetFileDataAccessObject betDAO =
+    public final SportbetFileDataAccessObject betDAO =
             new SportbetFileDataAccessObject("bets.csv");
+    private final FileUserDataAccessObject userDAO = new FileUserDataAccessObject("users.csv",new UserFactory());
 
     // Places the bet: set selection, stake, compute payout
     public void placeBet(Sportbet bet, User user, double stake, String teamSelection) {
@@ -24,6 +29,8 @@ public class SportbetInteractor {
         bet.setStatus("Bet Placed");
 
         user.addBet(bet, stake);
+        userDAO.save(user);
+        betDAO.saveBet(user.getUsername(), bet);
     }
 
     // Simulates the game & settles the bet
@@ -45,9 +52,9 @@ public class SportbetInteractor {
 
         bet.setStatus("completed");
 
-        // Increment games played count for the user
-        user.addGamePlayed();
 
-        betDAO.saveBet(user.getUsername(), bet);
+    }
+    public ArrayList<Sportbet> getUserBets(String username) {
+        return betDAO.loadBetsForUser(username);
     }
 }
