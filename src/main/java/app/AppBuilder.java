@@ -17,7 +17,8 @@ public class AppBuilder {
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
     final ViewManagerModel viewManagerModel = new ViewManagerModel();
-    ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
+    ViewManager viewManager = new ViewManager(cardPanel, cardLayout,
+            viewManagerModel);
 
     private GameSelectView gameSelectView;
     private GameSelectViewModel gameSelectViewModel;

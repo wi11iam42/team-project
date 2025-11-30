@@ -1,4 +1,4 @@
-package use_case;
+package use_case.Sportbet;
 
 import data_access.FileUserDataAccessObject;
 import data_access.SportbetFileDataAccessObject;
