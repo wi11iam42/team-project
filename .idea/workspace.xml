@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileUserDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameSelect/GameSelectPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/gameselect/GameSelectInputBoundary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DBUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/profile/ProfileInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenuFrame/MainMenuFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/GameSelectInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/gameselect/GameSelectInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/GameSelectOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/gameselect/GameSelectOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/GameSelectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/GameSelectTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +22,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -35,12 +35,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "billchenziang33"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;billchenziang33&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/wi11iam42/team-project.git&quot;,
@@ -57,9 +57,12 @@
     &quot;repository&quot;: &quot;team-project&quot;
   }
 }</component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="365d9700DELrjBc8ePzm1Sw1TiO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -70,13 +73,19 @@
     "Application.LoginViewTest.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainAlreadyLoggedIn.executor": "Run",
+    "JUnit.GameSelectTest.executor": "Run",
     "JUnit.ProfileInputDataTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "bill",
+    "git-widget-placeholder": "gameselect-usecase-interactor",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="use_case.gameselect" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
@@ -171,6 +180,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="commit for pull" />
     <MESSAGE value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
-    <option name="LAST_COMMIT_MESSAGE" value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
+    <MESSAGE value="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes" />
   </component>
 </project>

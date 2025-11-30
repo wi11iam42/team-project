@@ -3,11 +3,13 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import entity.User;
-import interface_adapter.GameSelect.GameSelectController;
+import interface_adapter.GameSelect.GameSelectPresenter;
 import interface_adapter.GameSelect.GameSelectState;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import use_case.gameselect.GameSelectInteractor;
+import use_case.gameselect.GameSelectOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +19,16 @@ import java.util.Set;
 
 public class GameSelectTest {
 
-    private GameSelectController gsc;
+    private GameSelectInteractor interactor;
+    private GameSelectPresenter presenter;
     private GameSelectState state;
 
     @BeforeEach
     void setUp() {
         User user = new User("Bob",0,0,0,"psps");
-        gsc = new GameSelectController();
+        presenter = new GameSelectPresenter();
+        presenter.prepareView(user);
+        interactor = new GameSelectInteractor(user, presenter);
         state = new GameSelectState(user);
     }
 
@@ -46,7 +51,7 @@ public class GameSelectTest {
         SwingUtilities.invokeAndWait(() -> {
             // replace UiClass::openMainWindow with your method under test
             state.setGame("BlackJack");
-            gsc.execute(state);
+            interactor.execute(state.getGame(), state.getStakes());
         });
 
         // Give Swing a moment to show windows (invokeAndWait already helps)
@@ -75,7 +80,7 @@ public class GameSelectTest {
         SwingUtilities.invokeAndWait(() -> {
             // replace UiClass::openMainWindow with your method under test
             state.setGame("Mines");
-            gsc.execute(state);
+            interactor.execute(state.getGame(), state.getStakes());
         });
 
         // Give Swing a moment to show windows (invokeAndWait already helps)
@@ -104,7 +109,7 @@ public class GameSelectTest {
         SwingUtilities.invokeAndWait(() -> {
             // replace UiClass::openMainWindow with your method under test
             state.setGame("MainMenu");
-            gsc.execute(state);
+            interactor.execute(state.getGame(), state.getStakes());
         });
 
         // Give Swing a moment to show windows (invokeAndWait already helps)
@@ -124,11 +129,20 @@ public class GameSelectTest {
 
     }
 
+    @Test
+    void testPresenter() throws Exception {
+        GameSelectState theState = presenter.getViewModel().getState();
+        assertSame(state.getGame(), theState.getGame(), "Expected games to match");
+        assertEquals(state.getStakes(), theState.getStakes(), "Expected stakes to match");
+        assertSame(state.getUser(), theState.getUser(), "Expected users to match");
+    }
 
-
-
-
-
-
+    @Test
+    void testInteractor() throws Exception {
+        GameSelectOutputBoundary thePresenter = interactor.getPresenter();
+        User theUser = interactor.getUser();
+        assertSame(thePresenter, presenter, "Expected presenters to match");
+        assertSame(state.getUser(), theUser, "Expected users to match");
+    }
 
     }
