@@ -1,7 +1,7 @@
 package interface_adapter.Blackjack;
 
 import entity.*;
-import use_case.BlackjackOutputBoundary;
+import use_case.Blackjack.BlackjackOutputBoundary;
 
 public class BlackjackPresenter implements BlackjackOutputBoundary {
     private final BlackjackViewModel viewModel;

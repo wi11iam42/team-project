@@ -1,6 +1,6 @@
 package interface_adapter.Blackjack;
 
-import use_case.BlackjackInteractor;
+import use_case.Blackjack.BlackjackInteractor;
 
 public class BlackjackController {
     private final BlackjackInteractor interactor;
