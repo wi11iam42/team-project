@@ -1,6 +1,6 @@
 package app;
 
-import data_access.SportsAPIDataAccess;
+import dataaccess.SportsAPIDataAccess;
 import entity.User;
 import view.MainMenuFrame.MainMenuFrame;
 

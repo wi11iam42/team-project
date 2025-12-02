@@ -1,0 +1,8 @@
+package usecase.signup;
+
+public interface SignupInputBoundary {
+
+    void execute(SignupInputData signupInputData);
+
+    void switchToLoginView();
+}

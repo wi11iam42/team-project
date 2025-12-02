@@ -1,11 +1,11 @@
 package view;
 
-import data_access.FileUserDataAccessObject;
-import data_access.SportsAPIDataAccess;
+import dataaccess.FileUserDataAccessObject;
+import dataaccess.SportsAPIDataAccess;
 import entity.Sportbet;
 import entity.User;
 import entity.UserFactory;
-import use_case.Sportbet.SportbetInteractor;
+import usecase.Sportbet.SportbetInteractor;
 import view.MainMenuFrame.MainMenuFrame;
 
 import javax.swing.*;

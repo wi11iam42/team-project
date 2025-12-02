@@ -1,9 +1,9 @@
 package view;
 
-import interface_adapter.login.LoginState;
-import interface_adapter.signup.SignupController;
-import interface_adapter.signup.SignupState;
-import interface_adapter.signup.SignupViewModel;
+import interfaceadapter.login.LoginState;
+import interfaceadapter.signup.SignupController;
+import interfaceadapter.signup.SignupState;
+import interfaceadapter.signup.SignupViewModel;
 import view.MainMenuFrame.BackgroundPanel;
 
 import javax.swing.*;

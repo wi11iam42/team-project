@@ -1,10 +1,10 @@
 package app;
 
 import entity.User;
-import interface_adapter.GameSelect.GameSelectPresenter;
-import interface_adapter.GameSelect.GameSelectViewModel;
-import interface_adapter.ViewManagerModel;
-import use_case.GameSelect.GameSelectInteractor;
+import interfaceadapter.GameSelect.GameSelectPresenter;
+import interfaceadapter.GameSelect.GameSelectViewModel;
+import interfaceadapter.ViewManagerModel;
+import usecase.GameSelect.GameSelectInteractor;
 import view.GameSelectView;
 import view.ViewManager;
 import javax.swing.*;

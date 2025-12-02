@@ -1,26 +1,26 @@
 package app;
 
-import data_access.FileUserDataAccessObject;
-import data_access.SportsAPIDataAccess;
+import dataaccess.FileUserDataAccessObject;
+import dataaccess.SportsAPIDataAccess;
 import entity.UserFactory;
-import interface_adapter.ViewManagerModel;
+import interfaceadapter.ViewManagerModel;
 
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginPresenter;
-import interface_adapter.login.LoginViewModel;
+import interfaceadapter.login.LoginController;
+import interfaceadapter.login.LoginPresenter;
+import interfaceadapter.login.LoginViewModel;
 
-import interface_adapter.signup.SignupController;
-import interface_adapter.signup.SignupPresenter;
-import interface_adapter.signup.SignupViewModel;
+import interfaceadapter.signup.SignupController;
+import interfaceadapter.signup.SignupPresenter;
+import interfaceadapter.signup.SignupViewModel;
 
-import interface_adapter.logout.LogoutController;
-import interface_adapter.logout.LogoutPresenter;
+import interfaceadapter.logout.LogoutController;
+import interfaceadapter.logout.LogoutPresenter;
 
-import interface_adapter.loggedin.LoggedInViewModel;
+import interfaceadapter.loggedin.LoggedInViewModel;
 
-import use_case.login.LoginInteractor;
-import use_case.logout.LogoutInteractor;
-import use_case.signup.SignupInteractor;
+import usecase.login.LoginInteractor;
+import usecase.logout.LogoutInteractor;
+import usecase.signup.SignupInteractor;
 
 import view.LoginView;
 import view.SignupView;

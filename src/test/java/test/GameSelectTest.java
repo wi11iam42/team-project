@@ -3,13 +3,13 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import entity.User;
-import interface_adapter.GameSelect.GameSelectPresenter;
-import interface_adapter.GameSelect.GameSelectState;
+import interfaceadapter.GameSelect.GameSelectPresenter;
+import interfaceadapter.GameSelect.GameSelectState;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.GameSelect.GameSelectInteractor;
-import use_case.GameSelect.GameSelectOutputBoundary;
+import usecase.GameSelect.GameSelectInteractor;
+import usecase.GameSelect.GameSelectOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;

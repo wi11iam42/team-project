@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.Wallet.WalletController;
-import interface_adapter.Wallet.WalletState;
-import interface_adapter.Wallet.WalletViewModel;
+import interfaceadapter.Wallet.WalletController;
+import interfaceadapter.Wallet.WalletState;
+import interfaceadapter.Wallet.WalletViewModel;
 
 import javax.swing.*;
 import java.awt.*;

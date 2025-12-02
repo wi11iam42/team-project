@@ -2,7 +2,7 @@ package view;
 
 import entity.Sportbet;
 import entity.User;
-import use_case.Sportbet.SportbetInteractor;
+import usecase.Sportbet.SportbetInteractor;
 import view.MainMenuFrame.MainMenuFrame;
 
 import javax.swing.*;
@@ -13,8 +13,8 @@ public class BetHistoryFrame extends JFrame {
     public BetHistoryFrame(User user, JFrame MainMenu){
 
         SportbetInteractor interactor = new SportbetInteractor();
-        data_access.FileUserDataAccessObject userDAO =
-                new data_access.FileUserDataAccessObject("users.csv", new entity.UserFactory());
+        dataaccess.FileUserDataAccessObject userDAO =
+                new dataaccess.FileUserDataAccessObject("users.csv", new entity.UserFactory());
 
         JPanel bg = new JPanel() {
             private final Image img = new ImageIcon(

@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.GameSelect.GameSelectController;
-import interface_adapter.GameSelect.GameSelectState;
-import interface_adapter.GameSelect.GameSelectViewModel;
+import interfaceadapter.GameSelect.GameSelectController;
+import interfaceadapter.GameSelect.GameSelectState;
+import interfaceadapter.GameSelect.GameSelectViewModel;
 import view.MainMenuFrame.BackgroundPanel;
 
 import javax.swing.*;

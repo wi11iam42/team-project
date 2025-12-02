@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 import entity.*;
-import interface_adapter.GameSelect.GameSelectViewModel;
-import interface_adapter.Mines.MinesController;
-import interface_adapter.Mines.MinesPresenter;
-import interface_adapter.Mines.MinesViewModel;
-import use_case.Mines.MinesInteractor;
-import data_access.FileUserDataAccessObject;
+import interfaceadapter.GameSelect.GameSelectViewModel;
+import interfaceadapter.Mines.MinesController;
+import interfaceadapter.Mines.MinesPresenter;
+import interfaceadapter.Mines.MinesViewModel;
+import usecase.Mines.MinesInteractor;
+import dataaccess.FileUserDataAccessObject;
 
 public class MinesView extends JFrame {
 

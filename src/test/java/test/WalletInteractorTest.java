@@ -1,12 +1,12 @@
 package test;
 
-import data_access.UserDataAccessInterface;
+import dataaccess.UserDataAccessInterface;
 import entity.User;
 import org.junit.Test;
-import use_case.Wallet.WalletInputData;
-import use_case.Wallet.WalletInteractor;
-import use_case.Wallet.WalletOutputBoundary;
-import use_case.Wallet.WalletOutputData;
+import usecase.Wallet.WalletInputData;
+import usecase.Wallet.WalletInteractor;
+import usecase.Wallet.WalletOutputBoundary;
+import usecase.Wallet.WalletOutputData;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -3,8 +3,8 @@ package test.Sportbet;
 import entity.Sportbet;
 import entity.User;
 import org.junit.jupiter.api.Test;
-import use_case.Sportbet.SportbetInteractor;
-import use_case.Sportbet.SportbetOutputBoundary;
+import usecase.Sportbet.SportbetInteractor;
+import usecase.Sportbet.SportbetOutputBoundary;
 
 import java.util.ArrayList;
 
