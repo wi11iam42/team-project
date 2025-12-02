@@ -89,14 +89,16 @@
     "Application.LoginViewTest.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MainAlreadyLoggedIn.executor": "Run",
+    "JUnit.BlackjackInteractorTest.executor": "Run",
     "JUnit.GameSelectTest.executor": "Coverage",
+    "JUnit.MinesInteractorTest.executor": "Run",
     "JUnit.ProfileInputDataTest.executor": "Run",
-    "JUnit.SportbetInteractorTest.executor": "Run",
     "JUnit.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "issei",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "nikita",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
