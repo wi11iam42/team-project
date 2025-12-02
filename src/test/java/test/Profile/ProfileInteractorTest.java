@@ -2,7 +2,7 @@ package test.Profile;
 
 import entity.User;
 import org.junit.jupiter.api.Test;
-import use_case.profile.*;
+import usecase.profile.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -3,8 +3,8 @@ package test;
 import entity.MinesGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.Mines.MinesInteractor;
-import use_case.Mines.MinesOutputBoundary;
+import usecase.Mines.MinesInteractor;
+import usecase.Mines.MinesOutputBoundary;
 
 import static org.junit.jupiter.api.Assertions.*;
 

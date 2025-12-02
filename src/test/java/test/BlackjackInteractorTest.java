@@ -3,8 +3,8 @@ package test;
 import entity.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.Blackjack.BlackjackInteractor;
-import use_case.Blackjack.BlackjackOutputBoundary;
+import usecase.Blackjack.BlackjackInteractor;
+import usecase.Blackjack.BlackjackOutputBoundary;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,6 +1,6 @@
 package view;
 
-import interface_adapter.Profile.ProfileViewModel;
+import interfaceadapter.Profile.ProfileViewModel;
 
 import javax.swing.*;
 import java.awt.*;

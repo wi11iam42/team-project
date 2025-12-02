@@ -1,7 +1,7 @@
 package test.MainMenu;
 
 import org.junit.jupiter.api.Test;
-import use_case.MainMenu.*;
+import usecase.MainMenu.*;
 
 import java.util.Arrays;
 import java.util.List;

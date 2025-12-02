@@ -6,12 +6,12 @@ import java.net.URL;
 import java.util.List;
 
 import entity.*;
-import interface_adapter.Blackjack.BlackjackController;
-import interface_adapter.Blackjack.BlackjackPresenter;
-import interface_adapter.Blackjack.BlackjackViewModel;
-import interface_adapter.GameSelect.GameSelectViewModel;
-import use_case.Blackjack.BlackjackInteractor;
-import data_access.FileUserDataAccessObject;
+import interfaceadapter.Blackjack.BlackjackController;
+import interfaceadapter.Blackjack.BlackjackPresenter;
+import interfaceadapter.Blackjack.BlackjackViewModel;
+import interfaceadapter.GameSelect.GameSelectViewModel;
+import usecase.Blackjack.BlackjackInteractor;
+import dataaccess.FileUserDataAccessObject;
 
 public class BlackjackView extends JFrame {
 
