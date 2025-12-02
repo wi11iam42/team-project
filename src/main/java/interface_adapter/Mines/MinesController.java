@@ -1,6 +1,6 @@
 package interface_adapter.Mines;
 
-import use_case.MinesInteractor;
+import use_case.Mines.MinesInteractor;
 
 public class MinesController {
     private final MinesInteractor interactor;

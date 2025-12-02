@@ -210,5 +210,16 @@ public class LoginView extends BackgroundPanel implements ActionListener, Proper
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
+
+    public void close() {
+        SwingUtilities.getWindowAncestor(this).dispose();
+    }
+
+    public void clearFields(){
+        usernameInputField.setText("");
+        passwordInputField.setText("");
+        usernameErrorField.setText("");
+        passwordErrorField.setText("");
+    }
 }
 

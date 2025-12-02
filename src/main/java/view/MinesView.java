@@ -8,8 +8,7 @@ import interface_adapter.GameSelect.GameSelectViewModel;
 import interface_adapter.Mines.MinesController;
 import interface_adapter.Mines.MinesPresenter;
 import interface_adapter.Mines.MinesViewModel;
-import use_case.*;
-import view.GameSelectView;
+import use_case.Mines.MinesInteractor;
 import data_access.FileUserDataAccessObject;
 
 public class MinesView extends JFrame {

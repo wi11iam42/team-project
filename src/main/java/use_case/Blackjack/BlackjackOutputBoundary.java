@@ -1,4 +1,4 @@
-package use_case;
+package use_case.Blackjack;
 
 import entity.BlackjackGame;
 import entity.GameResult;
