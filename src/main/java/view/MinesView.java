@@ -40,7 +40,7 @@ public class MinesView extends JFrame {
 
     public MinesView(User user) {
         this.user = user;
-        initCleanArchWithGame(3); // default 3 mines (will be recreated on bet)
+        initCleanArchWithGame(3); // default 3 mines
         createAndShowGUI();
         registerViewModel();
     }
@@ -55,7 +55,6 @@ public class MinesView extends JFrame {
     }
 
     private void registerViewModel() {
-        // Remove existing listeners if any? MinesViewModel implementation should allow multiple adds.
         viewModel.addListener((g, safe, x, y) -> {
             SwingUtilities.invokeLater(() -> handleTileUpdate(g, safe, x, y));
         });
@@ -197,7 +196,7 @@ public class MinesView extends JFrame {
         FileUserDataAccessObject userDAO = new FileUserDataAccessObject("users.csv", new UserFactory());
         userDAO.save(user);
 
-        // create a fresh game & CA stack using chosen mine count
+
         int mines = multSlider.getValue();
         initCleanArchWithGame(mines);
         registerViewModel(); // register listener to the new viewModel
