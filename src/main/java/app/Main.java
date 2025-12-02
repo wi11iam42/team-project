@@ -76,9 +76,11 @@ public class Main {
         SignupView signupView = new SignupView(signupVM);
         signupView.setSignupController(signupController);
 
-        JFrame frame = new JFrame("App Test");
+        JFrame frame = new JFrame("BET366 - Gambling Software");
+        ImageIcon icon = new ImageIcon(Main.class.getResource("/SmallLogo.png"));
+        frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(450, 350);
+        frame.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
 
         JPanel cards = new JPanel(new CardLayout());
         cards.add(loginView, loginView.getViewName());
