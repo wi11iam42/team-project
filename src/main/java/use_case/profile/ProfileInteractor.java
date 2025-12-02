@@ -20,7 +20,7 @@ public class ProfileInteractor implements ProfileInputBoundary {
         ProfileOutputData out = new ProfileOutputData(
                 user.getUsername(),
                 user.getBalance(),
-                user.getBets(),
+                user.getTotalBets(),
                 user.getGamesPlayed());
 
         presenter.prepareSuccessView(out);

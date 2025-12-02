@@ -26,7 +26,7 @@ public class User {
         return balance;
     }
 
-    public int getBets() {
+    public int getTotalBets() {
         return totalBets;
     }
 

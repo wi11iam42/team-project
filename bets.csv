@@ -1,2 +1,4 @@
 username,betId,sport,team1,team1price,team2,team2price,selection,stake,payout,status,betwonbill,67f8d60e11df6ab3af7c3c43c15ad6bb,NBA,Memphis Grizzlies,4.300000,New York Knicks,1.240000,New York Knicks,2000.000000,2480.000000,Bet Placed,false
 bill,3e9ff8cc7c27a9e791ef15809ccd4721,NBA,Indiana Pacers,1.680000,Utah Jazz,2.240000,Indiana Pacers,1000.000000,1680.000000,completed,true
+testUser,1,Soccer,TeamA,1.200000,TeamB,1.500000,TeamA,0.000000,0.000000,N/A,true
+testUser,1,Soccer,TeamA,2.000000,TeamB,3.000000,TeamA,50.000000,100.000000,Bet Placed,false

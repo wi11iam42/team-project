@@ -88,7 +88,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
                         user.getUsername(),
                         user.getPasswordHash(),
                         user.getBalance(),
-                        user.getBets(),
+                        user.getTotalBets(),
                         user.getGamesPlayed());
                 writer.write(line);
                 writer.newLine();
