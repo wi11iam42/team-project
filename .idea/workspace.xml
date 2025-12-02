@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b6d57b67-41da-4882-b9ed-de64519483fb" name="Changes" comment="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/BlackjackView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BlackjackView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MinesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MinesView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SignupView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,9 +16,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="C:\Users\NateB\IdeaProjects\team-project\htmlReport" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -53,6 +57,9 @@
     &quot;repository&quot;: &quot;team-project&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -61,33 +68,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LoginViewTest.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MainAlreadyLoggedIn.executor": "Run",
-    "JUnit.MainMenuInteractorTest.executor": "Coverage",
-    "JUnit.ProfileInputDataTest.executor": "Run",
-    "JUnit.ProfileInteractorTest.executor": "Coverage",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "nikita",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LoginViewTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainAlreadyLoggedIn.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameSelectTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ProfileInputDataTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gameselect-usecase-interactor&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nikit\IdeaProjects\team-project\src\main\resources\cards" />
-      <recent name="C:\Users\admin\IdeaProjects\team-project_bill2\src\main\resources" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="use_case.gameselect" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.GameSelectTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="TeamProject" />
@@ -101,32 +101,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainMenuInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameSelectTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="TeamProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="use_case.MainMenu.MainMenuInteractor" />
+          <option name="PATTERN" value="use_case.gameselect.GameSelectInteractor" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.MainMenu" />
-      <option name="MAIN_CLASS_NAME" value="test.MainMenu.MainMenuInteractorTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProfileInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TeamProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_case.profile.ProfileInteractor" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.Profile" />
-      <option name="MAIN_CLASS_NAME" value="test.Profile.ProfileInteractorTest" />
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.GameSelectTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
@@ -134,19 +118,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.MainMenuInteractorTest" />
-      <item itemvalue="JUnit.ProfileInteractorTest" />
+      <item itemvalue="JUnit.GameSelectTest" />
+      <item itemvalue="应用程序.Main" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.MainMenuInteractorTest" />
-        <item itemvalue="JUnit.ProfileInteractorTest" />
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -211,7 +185,23 @@
       <option name="presentableId" value="Default" />
       <updated>1764300216456</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes">
+      <option name="closed" value="true" />
+      <created>1764526763112</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764526763112</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes">
+      <option name="closed" value="true" />
+      <created>1764526787872</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1764526787872</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -221,14 +211,15 @@
     <MESSAGE value="1" />
     <MESSAGE value="commit for pull" />
     <MESSAGE value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
-    <option name="LAST_COMMIT_MESSAGE" value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
+    <MESSAGE value="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/team_project_bill2$ProfileInteractorTest.ic" NAME="ProfileInteractorTest Coverage Results" MODIFIED="1764460285529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>use_case.profile.ProfileInteractor</FILTER>
+    <SUITE FILE_PATH="coverage/team_project$Main.ic" NAME="Main Coverage Results" MODIFIED="1764527572721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/team_project_bill2$MainMenuInteractorTest.ic" NAME="MainMenuInteractorTest Coverage Results" MODIFIED="1764461092990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>use_case.MainMenu.MainMenuInteractor</FILTER>
+    <SUITE FILE_PATH="coverage/team_project$GameSelectTest.ic" NAME="GameSelectTest Coverage Results" MODIFIED="1764527998991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.gameselect.GameSelectInteractor</FILTER>
     </SUITE>
   </component>
 </project>
