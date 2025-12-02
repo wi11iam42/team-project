@@ -72,9 +72,24 @@ public class BetHistoryFrame extends JFrame {
                         + value.getTeam1() + " vs " + value.getTeam2());
                 JLabel l2 = new JLabel("Odds: " +
                         value.getTeam1price() + " / " + value.getTeam2price());
-                JLabel l3 = new JLabel("Your Bet: " + value.getSelection()
+                JLabel l3;
+                l3 = new JLabel("Your Bet: " + value.getSelection()
                         + " | Stake: " + value.getStake()
-                        + " | Status: " + value.getStatus());
+                        + " | " + value.getStatus());
+
+                if (value.getBetwon() && value.getStatus().equalsIgnoreCase("completed")){
+                    l3 = new JLabel("Your Bet: " + value.getSelection()
+                            + " | Stake: " + value.getStake()
+                            + " | " + value.getStatus()
+                            + " | Result: +" + value.getPayout());
+                }
+                else if (!value.getBetwon() && value.getStatus().equalsIgnoreCase("completed")) {
+                    l3 = new JLabel("Your Bet: " + value.getSelection()
+                            + " | Stake: " + value.getStake()
+                            + " | " + value.getStatus()
+                            + " | Result: -" + value.getStake());
+                }
+
 
                 l1.setFont(big);
                 l2.setFont(info);
