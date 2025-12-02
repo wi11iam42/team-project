@@ -35,7 +35,6 @@ public class AppBuilder {
         return this;
     }
 
-
     public JFrame build() {
         final JFrame application = new JFrame("366");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
