@@ -64,8 +64,10 @@ public class MinesView extends JFrame {
     private void createAndShowGUI() {
         setTitle("Mines Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 700);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout(10, 10));
+        Font bigFont = new Font("SansSerif", Font.BOLD, 24);
+        Font hugeFont = new Font("SansSerif", Font.BOLD, 32);
 
         // Left controls
         JPanel leftPanel = new JPanel();
@@ -73,13 +75,19 @@ public class MinesView extends JFrame {
         leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         walletLabel = new JLabel("Wallet:");
+        walletLabel.setFont(bigFont);
         walletField = new JTextField(String.format("$%.2f", user.getBalance()));
+        walletField.setFont(bigFont);
         walletField.setEditable(false);
 
         JLabel betLabel = new JLabel("Bet amount:");
+        betLabel.setFont(bigFont);
         betField = new JTextField("20");
+        betField.setFont(bigFont);
+
 
         submitButton = new JButton("Submit Bet");
+        submitButton.setFont(bigFont);
         submitButton.addActionListener(e -> onSubmitBet());
 
         JPanel betPanel = new JPanel(new BorderLayout(5, 5));
@@ -88,18 +96,21 @@ public class MinesView extends JFrame {
 
         JLabel multLabel = new JLabel("Mines (slider):");
         multSlider = new JSlider(1, 8, 3); // allow 1..8 mines on 5x5 board
+        multLabel.setFont(bigFont);
         multSlider.setMajorTickSpacing(1);
         multSlider.setPaintTicks(true);
         multSlider.setPaintLabels(true);
 
         multiplierLabel = new JLabel("Multiplier: x1.00");
-        multiplierLabel.setFont(multiplierLabel.getFont().deriveFont(Font.BOLD, 14f));
+        multiplierLabel.setFont(hugeFont);
 
         cashoutButton = new JButton("Cashout");
+        cashoutButton.setFont(bigFont);
         cashoutButton.setEnabled(false);
         cashoutButton.addActionListener(e -> onCashout());
 
         returnButton = new JButton("Return to Game Select");
+        returnButton.setFont(bigFont);
         returnButton.addActionListener(e -> {
             GameSelectViewModel viewModel = new GameSelectViewModel(user);
             GameSelectView gameSelectView = new GameSelectView(viewModel);
@@ -135,6 +146,7 @@ public class MinesView extends JFrame {
         for (int x = 0; x < gridSize; x++) {
             for (int y = 0; y < gridSize; y++) {
                 JButton tile = new JButton();
+                tile.setFont(hugeFont);
                 tiles[x][y] = tile;
                 tile.setPreferredSize(new Dimension(70, 70));
                 tile.setBackground(Color.LIGHT_GRAY);
