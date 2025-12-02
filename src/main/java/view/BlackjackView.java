@@ -23,14 +23,14 @@ public class BlackjackView extends JFrame {
     private JTextField betField;
     private User current_user;
 
-    // Keep track of bet so payouts are correct
+
     private double lastBet = 0.0;
 
-    // Controls whether dealer's hole card (and later dealer-drawn cards) are shown
+
     private boolean dealerRevealed = false;
 
     private JLabel[][] cardSlots = new JLabel[2][5];
-    // row 0 = dealer, row 1 = player
+
 
     private JButton dealButton;
     private JButton hitButton;
@@ -38,7 +38,7 @@ public class BlackjackView extends JFrame {
     private JButton betSubmit;
     private JButton returnButton;
 
-    // Slot / image sizing
+
     private static final int SLOT_WIDTH = 220;
     private static final int SLOT_HEIGHT = 320;
 
@@ -48,7 +48,7 @@ public class BlackjackView extends JFrame {
     private final Font CARD_FONT = new Font("SansSerif", Font.BOLD, 28);
 
     public BlackjackView(User user) {
-        // === Build Clean Architecture Stack ===
+
         viewModel = new BlackjackViewModel();
         BlackjackPresenter presenter = new BlackjackPresenter(viewModel);
         BlackjackGame game = new BlackjackGame(100);
@@ -59,7 +59,7 @@ public class BlackjackView extends JFrame {
 
         createAndShowGUI();
 
-        // === Register ViewModel Listener ===
+
         viewModel.addListener(new BlackjackViewModel.Listener() {
             @Override
             public void onHandsUpdated(Hand player, Hand dealer) {
@@ -292,10 +292,10 @@ public class BlackjackView extends JFrame {
             case "queen": rank = "queen"; break;
             case "j":
             case "jack": rank = "jack"; break;
-            default: rank = rawRank; break; // numbers like "10", "9", etc.
+            default: rank = rawRank; break;
         }
 
-        String suit = c.getSuit().toLowerCase().trim(); // e.g. "spades"
+        String suit = c.getSuit().toLowerCase().trim();
         return rank + "_of_" + suit + "2";
     }
 
@@ -328,7 +328,6 @@ public class BlackjackView extends JFrame {
             }
 
         } catch (Exception ex) {
-            // swallow — we'll fallback to text display
             ex.printStackTrace();
         }
         return null;
@@ -371,7 +370,6 @@ public class BlackjackView extends JFrame {
                 rank = rawRank;
         }
 
-        // ✅ ONLY J, Q, K USE "2" — NOT ACE
         boolean useTwoSuffix =
                 rank.equals("jack") ||
                         rank.equals("queen") ||
