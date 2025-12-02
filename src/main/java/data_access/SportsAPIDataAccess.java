@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SportsAPIDataAccess {
-    private OkHttpClient client = new OkHttpClient();
-    private String apiKey = "0c5ba9bf08780b2ed18e605b84f07565";
+    private final OkHttpClient client = new OkHttpClient();
     public static ArrayList<Sportbet> allbets = new ArrayList<>();
 
     public void fetchOdds() {
-        String sport = "icehockey_nhl";
+        String sport = "basketball_nba";
+        String apiKey = "0c5ba9bf08780b2ed18e605b84f07565";
         String url = "https://api.the-odds-api.com/v4/sports/" + sport +
                 "/odds?regions=us&markets=h2h&apiKey=" + apiKey;
         System.out.println(url);

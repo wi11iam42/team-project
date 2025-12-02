@@ -1,9 +1,10 @@
 
-package use_case.gameselect;
+package use_case.GameSelect;
 
 import entity.User;
 import interface_adapter.GameSelect.GameSelectController;
 import interface_adapter.GameSelect.GameSelectState;
+import use_case.GameSelect.GameSelectInputBoundary;
 
 public class GameSelectInteractor implements GameSelectInputBoundary {
     private final User user;

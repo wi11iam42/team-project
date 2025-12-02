@@ -35,6 +35,7 @@ public class Main {
         System.setProperty("sun.java2d.uiScale", "1");
 
         SportsAPIDataAccess data = new SportsAPIDataAccess();
+        // data.fetchOdds();
         data.readdata();
 
         UserFactory userFactory = new UserFactory();

@@ -1,4 +1,4 @@
-package use_case.gameselect;
+package use_case.GameSelect;
 
 import entity.User;
 

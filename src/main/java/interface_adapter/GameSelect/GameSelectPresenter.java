@@ -1,7 +1,7 @@
 package interface_adapter.GameSelect;
 
 import entity.User;
-import use_case.gameselect.GameSelectOutputBoundary;
+import use_case.GameSelect.GameSelectOutputBoundary;
 
 public class GameSelectPresenter implements GameSelectOutputBoundary {
 

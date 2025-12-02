@@ -8,8 +8,8 @@ import interface_adapter.GameSelect.GameSelectState;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.gameselect.GameSelectInteractor;
-import use_case.gameselect.GameSelectOutputBoundary;
+import use_case.GameSelect.GameSelectInteractor;
+import use_case.GameSelect.GameSelectOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;

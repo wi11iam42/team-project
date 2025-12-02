@@ -4,7 +4,7 @@ import entity.User;
 import interface_adapter.GameSelect.GameSelectPresenter;
 import interface_adapter.GameSelect.GameSelectViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.gameselect.GameSelectInteractor;
+import use_case.GameSelect.GameSelectInteractor;
 import view.GameSelectView;
 import view.ViewManager;
 import javax.swing.*;
