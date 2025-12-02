@@ -9,9 +9,22 @@ public class Card {
         this.suit = suit;
     }
 
-    public String getRank() { return rank; }
-    public String getSuit() { return suit; }
+    public String getRank() {
+        return rank;
+    }
 
+    public String getSuit() {
+        return suit;
+    }
+
+    /**
+     * Returns the Blackjack value of this card based on its rank.
+     * Number cards return their face value, face cards (J, Q, K) return 10,
+     * and Ace returns 11 by default (adjustment for 1 or 11 should be handled elsewhere).
+     *
+     * @return the Blackjack point value of the card
+     * @throws IllegalArgumentException if the card rank is invalid
+     */
     public int getValue() {
         switch (rank) {
             case "2": return 2;

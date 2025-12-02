@@ -30,11 +30,24 @@ public class MinesGame {
         }
     }
 
+    /**
+     * Calculates the total Blackjack value of the hand.
+     * Aces are initially counted as 11 and reduced to 1 as needed
+     * to prevent the hand from busting.
+     * @param x row of selected square
+     * @param y column of selected square
+     * @return whether the square was a bomb or not.
+     */
     public boolean reveal(int x, int y) {
         revealed[x][y] = true;
         return !mines[x][y];
     }
 
-    public boolean[][] getRevealed() { return revealed; }
-    public boolean[][] getMines() { return mines; }
+    public boolean[][] getRevealed() {
+        return revealed;
+    }
+
+    public boolean[][] getMines() {
+        return mines;
+    }
 }
