@@ -94,8 +94,8 @@ public class SportbetFrame extends JFrame {
                                 "   |  Status: " + value.getStatus()
                 );
 
-                Font title = new Font("Segoe UI", Font.BOLD, 40);
-                Font info = new Font("Segoe UI", Font.PLAIN, 36);
+                final Font title = new Font("Segoe UI", Font.BOLD, 40);
+                final Font info = new Font("Segoe UI", Font.PLAIN, 36);
 
                 line1.setFont(title);
                 line2.setFont(info);
@@ -113,7 +113,8 @@ public class SportbetFrame extends JFrame {
 
                 if (isSelected) {
                     row.setBackground(new Color(180, 200, 240, 220));
-                } else {
+                }
+                else {
                     row.setBackground(new Color(255, 255, 255, 170));
                 }
 
@@ -121,7 +122,7 @@ public class SportbetFrame extends JFrame {
             }
         });
 
-        JScrollPane scrollPane = new JScrollPane(betsList);
+        final JScrollPane scrollPane = new JScrollPane(betsList);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
@@ -132,26 +133,28 @@ public class SportbetFrame extends JFrame {
         AtomicBoolean hasTeam = new AtomicBoolean(false);
         AtomicBoolean pickedTeam1 = new AtomicBoolean(false);
 
-        JTextField amountField = new JTextField(10);
+        final JTextField amountField = new JTextField(10);
         amountField.setFont(new Font("Segoe UI", Font.BOLD, 50));
         amountField.setPreferredSize(new Dimension(350, 80));
 
-        JButton pickTeam1Btn = new JButton("Bet on Team 1");
-        JButton pickTeam2Btn = new JButton("Bet on Team 2");
-        JButton placeBetButton = new JButton("Place Bet");
-        JButton backButton = new JButton("Go Back");
+        final JButton pickTeam1Btn = new JButton("Bet on Team 1");
+        final JButton pickTeam2Btn = new JButton("Bet on Team 2");
+        final JButton placeBetButton = new JButton("Place Bet");
+        final JButton backButton = new JButton("Go Back");
 
-        Font buttonFont = new Font("Segoe UI", Font.BOLD, 40);
+        final Font buttonFont = new Font("Segoe UI", Font.BOLD, 40);
 
-        JButton[] allButtons = {pickTeam1Btn, pickTeam2Btn, placeBetButton, backButton};
+        final JButton[] allButtons = {pickTeam1Btn, pickTeam2Btn, placeBetButton, backButton};
         for (JButton b : allButtons) {
             b.setFont(buttonFont);
             b.setPreferredSize(new Dimension(350, 80));
         }
 
         pickTeam1Btn.addActionListener(e -> {
-            Sportbet s = betsList.getSelectedValue();
-            if (s == null) return;
+            final Sportbet s = betsList.getSelectedValue();
+            if (s == null) {
+                return;
+            }
             hasTeam.set(true);
             pickedTeam1.set(true);
             s.setSelection(s.getTeam1());
@@ -159,8 +162,10 @@ public class SportbetFrame extends JFrame {
         });
 
         pickTeam2Btn.addActionListener(e -> {
-            Sportbet s = betsList.getSelectedValue();
-            if (s == null) return;
+            final Sportbet s = betsList.getSelectedValue();
+            if (s == null) {
+                return;
+            }
             hasTeam.set(true);
             pickedTeam1.set(false);
             s.setSelection(s.getTeam2());
@@ -168,7 +173,7 @@ public class SportbetFrame extends JFrame {
         });
 
         placeBetButton.addActionListener(e -> {
-            Sportbet s = betsList.getSelectedValue();
+            final Sportbet s = betsList.getSelectedValue();
             if (s == null || !hasTeam.get()) {
                 JOptionPane.showMessageDialog(this, "Select a bet and team first.");
                 return;
@@ -178,10 +183,11 @@ public class SportbetFrame extends JFrame {
                 return;
             }
 
-            int amount;
+            final int amount;
             try {
                 amount = Integer.parseInt(amountField.getText());
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Enter a valid integer.");
                 return;
             }
@@ -210,7 +216,7 @@ public class SportbetFrame extends JFrame {
             dispose();
         });
 
-        JPanel bottomPanel = new JPanel(new FlowLayout());
+        final JPanel bottomPanel = new JPanel(new FlowLayout());
         bottomPanel.setOpaque(false);
 
         bottomPanel.add(pickTeam1Btn);

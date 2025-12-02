@@ -53,8 +53,8 @@ public class MainMenuFrame extends JFrame {
         setTitle("BET366 Main Menu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setMinimumSize(new Dimension(1700, 1050));
-        setPreferredSize(new Dimension(1700, 1050));
+        setMinimumSize(new Dimension(1500, 900));
+        setPreferredSize(new Dimension(1500, 900));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         if (!userDAO.existsByName(user.getUsername())) {
