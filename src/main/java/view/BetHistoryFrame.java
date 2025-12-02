@@ -2,95 +2,169 @@ package view;
 
 import entity.Sportbet;
 import entity.User;
-import use_case.SportbetInteractor;
+import use_case.Sportbet.SportbetInteractor;
 import view.MainMenuFrame.MainMenuFrame;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class BetHistoryFrame extends JFrame {
+
     public BetHistoryFrame(User user, JFrame MainMenu){
 
         SportbetInteractor interactor = new SportbetInteractor();
         data_access.FileUserDataAccessObject userDAO =
                 new data_access.FileUserDataAccessObject("users.csv", new entity.UserFactory());
 
+        JPanel bg = new JPanel() {
+            private final Image img = new ImageIcon(
+                    getClass().getResource("/Image-from-iOS.jpg")
+            ).getImage();
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        setContentPane(bg);
+        bg.setLayout(new BorderLayout());
+
         setTitle("Bet History");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1920, 1080);
-        setLayout(new BorderLayout());
+
+        // full screen
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
+
+        Font big = new Font("Segoe UI", Font.BOLD, 40);
+        Font info = new Font("Segoe UI", Font.PLAIN, 36);
 
         JButton backButton = new JButton("Go Back");
         JButton simulateButton = new JButton("Simulate Game");
+        backButton.setFont(big);
+        simulateButton.setFont(big);
+        backButton.setPreferredSize(new Dimension(350, 80));
+        simulateButton.setPreferredSize(new Dimension(350, 80));
 
-        // Top list (active bets)
-        DefaultListModel<Sportbet> model = new DefaultListModel<>();
+        // active bets list
+        DefaultListModel<Sportbet> activeModel = new DefaultListModel<>();
         for (Sportbet b : interactor.getUserBets(user.getUsername())) {
-            if (!b.getStatus().equalsIgnoreCase("completed")) { // only active bets
-                model.addElement(b);
+            if (!b.getStatus().equalsIgnoreCase("completed")) {
+                activeModel.addElement(b);
             }
         }
-        JList<Sportbet> betList = new JList<>(model);
-        betList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        betList.setVisibleRowCount(-1);
 
-        // Bottom list (all bets)
+        JList<Sportbet> activeList = new JList<>(activeModel);
+        activeList.setOpaque(false);
+
+        activeList.setCellRenderer(new ListCellRenderer<Sportbet>() {
+            @Override
+            public Component getListCellRendererComponent(
+                    JList<? extends Sportbet> list, Sportbet value,
+                    int index, boolean isSelected, boolean cellHasFocus) {
+
+                JPanel row = new JPanel();
+                row.setLayout(new BoxLayout(row, BoxLayout.Y_AXIS));
+                row.setOpaque(true);
+
+                JLabel l1 = new JLabel(value.getSport() + " | "
+                        + value.getTeam1() + " vs " + value.getTeam2());
+                JLabel l2 = new JLabel("Odds: " +
+                        value.getTeam1price() + " / " + value.getTeam2price());
+                JLabel l3 = new JLabel("Your Bet: " + value.getSelection()
+                        + " | Stake: " + value.getStake()
+                        + " | Status: " + value.getStatus());
+
+                l1.setFont(big);
+                l2.setFont(info);
+                l3.setFont(info);
+
+                l1.setForeground(Color.BLACK);
+                l2.setForeground(Color.BLACK);
+                l3.setForeground(Color.BLACK);
+
+                row.add(l1);
+                row.add(l2);
+                row.add(l3);
+                row.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+
+                if (isSelected)
+                    row.setBackground(new Color(180,200,240,230));
+                else
+                    row.setBackground(new Color(255,255,255,160));
+
+                return row;
+            }
+        });
+
+        // all bets list
         DefaultListModel<Sportbet> allModel = new DefaultListModel<>();
-        for (Sportbet b : interactor.getUserBets(user.getUsername())) {
+        for (Sportbet b : interactor.getUserBets(user.getUsername()))
             allModel.addElement(b);
-        }
-        JList<Sportbet> allBetsList = new JList<>(allModel);
-        allBetsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        allBetsList.setVisibleRowCount(-1);
-        allBetsList.setEnabled(false);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-                new JScrollPane(betList), new JScrollPane(allBetsList));
-        splitPane.setDividerLocation(400);
-        add(splitPane, BorderLayout.CENTER);
+        JList<Sportbet> allList = new JList<>(allModel);
+        allList.setOpaque(false);
+        allList.setEnabled(false);
+
+        allList.setCellRenderer(activeList.getCellRenderer());
+
+        JScrollPane sp1 = new JScrollPane(activeList);
+        JScrollPane sp2 = new JScrollPane(allList);
+
+        makeScrollPaneTransparent(sp1);
+        makeScrollPaneTransparent(sp2);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp1, sp2);
+        splitPane.setDividerLocation(500);
+        splitPane.setOpaque(false);
+        splitPane.setBackground(new Color(0,0,0,0));
+
+        bg.add(splitPane, BorderLayout.CENTER);
 
         backButton.addActionListener(e -> {
-            // Save user data before returning to ensure database is synchronized
             userDAO.save(user);
             new MainMenuFrame(user);
             dispose();
         });
 
         simulateButton.addActionListener(e -> {
-            Sportbet selected = betList.getSelectedValue();
-            if (selected == null){
-                JOptionPane.showMessageDialog(this, "Select a bet to simulate first!");
+            Sportbet selected = activeList.getSelectedValue();
+            if (selected == null) {
+                JOptionPane.showMessageDialog(this, "Select a bet first!");
                 return;
             }
 
-            // Call interactor to simulate bet
             interactor.simulateBet(selected, user);
-
-            // Save user data to persist gamesPlayed count and balance changes
             userDAO.save(user);
-            interactor.betDAO.replaceByUsernameAndId(user.getUsername(), selected.getId(), selected);
-            // Show result
-            if (selected.getBetwon()) {
-                JOptionPane.showMessageDialog(this,
-                        selected.getSelection() + " won! Your winnings have been deposited.");
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        selected.getSelection() + " lost. Better luck next time!");
-            }
+            interactor.betDAO.replaceByUsernameAndId(
+                    user.getUsername(), selected.getId(), selected);
 
-            // Update UI
-            model.removeElement(selected);
-            allModel.removeAllElements();
-            for (Sportbet b : interactor.getUserBets(user.getUsername())) {
+            if (selected.getBetwon())
+                JOptionPane.showMessageDialog(this, selected.getSelection() + " won!");
+            else
+                JOptionPane.showMessageDialog(this, selected.getSelection() + " lost!");
+
+            activeModel.removeElement(selected);
+
+            allModel.clear();
+            for (Sportbet b : interactor.getUserBets(user.getUsername()))
                 allModel.addElement(b);
-            }
         });
 
-        JPanel bottomPanel = new JPanel(new FlowLayout());
-        bottomPanel.add(simulateButton);
-        bottomPanel.add(backButton);
-        add(bottomPanel, BorderLayout.SOUTH);
+        JPanel bottom = new JPanel(new FlowLayout());
+        bottom.setOpaque(false);
+        bottom.add(simulateButton);
+        bottom.add(backButton);
+
+        bg.add(bottom, BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+
+    private void makeScrollPaneTransparent(JScrollPane sp) {
+        sp.setOpaque(false);
+        sp.getViewport().setOpaque(false);
+        sp.setBorder(null);
     }
 }

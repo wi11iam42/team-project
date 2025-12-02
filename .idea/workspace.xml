@@ -75,6 +75,7 @@
     "Application.MainAlreadyLoggedIn.executor": "Run",
     "JUnit.GameSelectTest.executor": "Run",
     "JUnit.ProfileInputDataTest.executor": "Run",
+    "JUnit.ProfileInteractorTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "gameselect-usecase-interactor",
@@ -100,8 +101,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainMenuInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.MainMenu.MainMenuInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.MainMenu" />
+      <option name="MAIN_CLASS_NAME" value="test.MainMenu.MainMenuInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TeamProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.profile.ProfileInteractor" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.Profile" />
+      <option name="MAIN_CLASS_NAME" value="test.Profile.ProfileInteractorTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.MainMenuInteractorTest" />
+      <item itemvalue="JUnit.ProfileInteractorTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MainMenuInteractorTest" />
+        <item itemvalue="JUnit.ProfileInteractorTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
@@ -182,5 +223,13 @@
     <MESSAGE value="commit for the change of wallet UI, the new return button for blackjack, and the number of game palyed related to the Profile." />
     <MESSAGE value="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes" />
     <option name="LAST_COMMIT_MESSAGE" value="added gameSelect UseCase Interactor to better match clean architecture, then updated unit tests to reflect changes" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/team_project_bill2$ProfileInteractorTest.ic" NAME="ProfileInteractorTest Coverage Results" MODIFIED="1764460285529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.profile.ProfileInteractor</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/team_project_bill2$MainMenuInteractorTest.ic" NAME="MainMenuInteractorTest Coverage Results" MODIFIED="1764461092990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.MainMenu.MainMenuInteractor</FILTER>
+    </SUITE>
   </component>
 </project>

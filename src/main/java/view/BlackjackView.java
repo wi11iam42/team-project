@@ -9,8 +9,7 @@ import interface_adapter.Blackjack.BlackjackController;
 import interface_adapter.Blackjack.BlackjackPresenter;
 import interface_adapter.Blackjack.BlackjackViewModel;
 import interface_adapter.GameSelect.GameSelectViewModel;
-import use_case.*;
-import view.GameSelectView;
+import use_case.Blackjack.BlackjackInteractor;
 import data_access.FileUserDataAccessObject;
 
 public class BlackjackView extends JFrame {

@@ -1,7 +1,7 @@
 package interface_adapter.Mines;
 
 import entity.MinesGame;
-import use_case.MinesOutputBoundary;
+import use_case.Mines.MinesOutputBoundary;
 
 public class MinesPresenter implements MinesOutputBoundary {
     private final MinesViewModel viewModel;

@@ -13,9 +13,13 @@ import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
 
+import interface_adapter.logout.LogoutController;
+import interface_adapter.logout.LogoutPresenter;
+
 import interface_adapter.loggedin.LoggedInViewModel;
 
 import use_case.login.LoginInteractor;
+import use_case.logout.LogoutInteractor;
 import use_case.signup.SignupInteractor;
 
 import view.LoginView;
@@ -41,9 +45,16 @@ public class Main {
         LoginViewModel loginVM = new LoginViewModel();
         SignupViewModel signupVM = new SignupViewModel();
         LoggedInViewModel loggedInVM = new LoggedInViewModel();
+        LoginView loginView = new LoginView(loginVM);
+
+        LogoutPresenter logoutPresenter = new LogoutPresenter(viewManager, loginVM, loginView);
+
+        LogoutInteractor logoutInteractor = new LogoutInteractor(userDataAccessObject, logoutPresenter);
+
+        LogoutController logoutController = new LogoutController(logoutInteractor);
 
         LoginPresenter loginPresenter =
-                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDataAccessObject);
+                new LoginPresenter(viewManager, loggedInVM, loginVM, signupVM, userDataAccessObject, loginView, logoutController);
 
         SignupPresenter signupPresenter =
                 new SignupPresenter(viewManager, signupVM, loginVM);
@@ -60,7 +71,6 @@ public class Main {
         SignupController signupController =
                 new SignupController(signupInteractor);
 
-        LoginView loginView = new LoginView(loginVM);
         loginView.setLoginController(loginController);
 
         SignupView signupView = new SignupView(signupVM);
